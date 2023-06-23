@@ -38,5 +38,11 @@ def recommend_food(request):
 
     return render(request, 'pybo/recommend_food.html', context)
 
+def recommend(request):
+    """
+    추천 페이지
+    """
+    return render(request,'recommend.html')
+
 
 
