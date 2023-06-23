@@ -10,7 +10,7 @@ from .models import Food
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'main.html')
 
 def login_page(request):
     """
