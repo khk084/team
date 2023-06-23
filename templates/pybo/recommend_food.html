@@ -1,6 +1,20 @@
-{% extends 'base.html' %}
+{% extends 'base2.html' %}
 {% block content %}
-<div class="container my-3 text-center">
-    {{food.name}} 1
-</div>
+ <div class="container mt-5">
+        <h1 class="mb-4">Recommended Food:</h1>
+        <div class="row">
+            <div class="col-md-4">
+                <a href="{% url 'recommend_food' %}" class="btn btn-primary">Recommend Food</a>
+            </div>
+            <div class="col-md-8">
+                <div id="food-details" class="card">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ food.name }}</h2>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

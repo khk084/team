@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>음식 없음</title>
+    <title>No Food</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>음식이 추가 되어있지 않습니다.</h1>
-    <p> 불편을 드려 죄송합니다. 잠시 후 다시 확인해주세요.</p>
+    <div class="container mt-5">
+        <h1 class="mb-4">No Recommended Food</h1>
+        <p>There is no recommended food at the moment.</p>
+        <a href="{% url 'recommend_food' %}" class="btn btn-primary">Get Recommendation</a>
+    </div>
 </body>
 </html>
