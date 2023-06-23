@@ -14,3 +14,7 @@ class Food(models.Model):
 
 def __str__(self):
     return self.name
+
+class Records(models.Model):
+    # 테스트
+    subject = models.CharField(max_length=100)
