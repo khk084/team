@@ -38,6 +38,7 @@ def recommend_food(request):
 
     return render(request, 'pybo/recommend_food.html', context)
 
+
 def records(request):
     # 기록보기
     records_list = Records.objects.order_by('-create_date')
@@ -59,3 +60,9 @@ def submit_rating(request, records_id):
         return redirect('re_detail', records_id=records_id)
     else:
         return redirect('re_detail', records_id=records_id)
+
+def recommend(request):
+    """
+    추천 페이지
+    """
+    return render(request,'recommend.html')
