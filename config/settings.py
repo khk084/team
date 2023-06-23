@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'common.apps.CommonConfig',
     'pybo.apps.PyboConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,4 +124,11 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+
+
+#로그인 로그아웃 성공 시 자동으로 이동할 url
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
