@@ -2,8 +2,8 @@ from django.shortcuts import render
 import random
 
 from django.shortcuts import render
-
-from .models import Food
+from django.shortcuts import redirect
+from .models import Food, Records
 
 
 # Create your views here.
@@ -38,11 +38,31 @@ def recommend_food(request):
 
     return render(request, 'pybo/recommend_food.html', context)
 
+
+def records(request):
+    # 기록보기
+    records_list = Records.objects.order_by('-create_date')
+    context = {'records_list': records_list}
+    return render(request, 'pybo/records_list.html', context)
+
+def records_detail(request, records_id):
+    # 기록보기 상세
+    records = Records.objects.get(id=records_id)
+    context = {'records': records}
+    return render(request, 'pybo/records_detail.html', context)
+
+def submit_rating(request, records_id):
+    if request.method == "POST":
+        rating = request.POST.get('rating')
+        records = Records.objects.get(id=records_id)
+        records.rating = rating
+        records.save()
+        return redirect('re_detail', records_id=records_id)
+    else:
+        return redirect('re_detail', records_id=records_id)
+
 def recommend(request):
     """
     추천 페이지
     """
     return render(request,'recommend.html')
-
-
-
