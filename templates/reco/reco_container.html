@@ -5,28 +5,26 @@
     <title>recommend_container</title>
 </head>
 <body>
-<div id="reco_result" style="text-align:center;">
-    <img src="https://blog.kakaocdn.net/dn/YZiGz/btqxdqHsg3G/TmrEpyujNbbtNtOsiFpkik/img.jpg"
-         width="200px" height="200px"><br>
-    <h4></h4>
 
+<!-- 추천 결과 출력 -->
+<div id="reco_result" style="text-align:center;">
+    <iframe src="../pybo/recommend_food.html" width="500" height="300" frameborder="0"></iframe>
 </div>
 
+
 <div style="text-align:center;">
+    <!-- 리셋 버튼 -->
     <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;" type="reset" id="reset">다시</button>
-
+    <!-- 확인 버튼 -->
     <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;" type="submit" id="submit">확인</button>
-    <br><br>
 
-    <form action="/search" method="get">
-      <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
+    <!-- 검색 버튼 ***수정필요***-->
+    <!-- <form action="/search" method="get"> -->
+    <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;" type="submit" id="search">검색</button>
-    </form>
-
-
-
+    <!-- </form> -->
 
 </div>
 

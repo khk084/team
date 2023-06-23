@@ -10,7 +10,7 @@ from .models import Food
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'main.html')
 
 def login_page(request):
     """
@@ -37,6 +37,12 @@ def recommend_food(request):
     }
 
     return render(request, 'pybo/recommend_food.html', context)
+
+def recommend(request):
+    """
+    추천 페이지
+    """
+    return render(request,'recommend.html')
 
 
 
