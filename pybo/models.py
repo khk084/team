@@ -11,13 +11,13 @@ class Food(models.Model):
     name = models.CharField(max_length=100)
     menu = models.CharField(max_length=100)
     price = models.CharField(max_length=100)
-
-def __str__(self):
-    return self.name
+    def __str__(self):
+        return self.name
 
 
 class Records(models.Model):
-    subject = models.CharField(max_length=200)
+    subject = models.CharField(max_length=100)
     content = models.TextField()
     create_date = models.DateTimeField()
-
+    def __str__(self):
+        return self.subject

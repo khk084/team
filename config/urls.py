@@ -18,7 +18,6 @@ from django.urls import path, include
 from pybo import views
 
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
@@ -26,6 +25,4 @@ urlpatterns = [
     path('recommend-food/', views.recommend_food, name='recommend_food'),
     path('common/', include('common.urls')),
     path('recommend/', views.recommend),
-
-
 ]
