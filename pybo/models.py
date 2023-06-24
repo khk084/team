@@ -18,5 +18,6 @@ class Records(models.Model):
     subject = models.CharField(max_length=100)
     content = models.TextField()
     create_date = models.DateTimeField()
+    rating = models.IntegerField(blank=True, null=True) # 별점
     def __str__(self):
         return self.subject
