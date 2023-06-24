@@ -4,3 +4,4 @@ from .models import Food, Records
 
 admin.site.register(Food)
 admin.site.register(Records)
+
