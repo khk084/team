@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyFood</title>
+    <meta name="description" content="Tequila is a free, open source Bootstrap 4 theme">
+    <meta name="generator" content="Themestr.app">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/3.0.0/css/ionicons.css" rel="stylesheet">
+    <link href="./theme.css" rel="stylesheet">
+    <link href="./template.css" rel="stylesheet">
+  <style>
+      header {
+          background-image: url('https://images.unsplash.com/photo-1503756043224-101dab0dcb30?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=4bd62d181f78bd2f85ab23a677acd6f4&w=1600&q=80');
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center top;
+      }
+  </style><style>.copyable{position:relative}.copyable .copyable-trigger{color:#333;background-color:rgba(255,255,255,.8);border:1px #888 solid;border-radius:4px;position:absolute;padding:3px 6px;top:0;right:0;z-index:102;text-decoration:none;font-family:monospace;font-size:11px;cursor:pointer;display:none}.copyable:hover .copyable-trigger{display:inline-block}</style>
+</head>
+<body>
+
+<div id="nav">{% include "test/navbar2.html" %}</div>
+
+<!-- 기본 템플릿 안에 삽입될 내용 Start-->
+{% block content %}
+
+
+
+
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- JQuery JS -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="scripts.js"></script>
+
+<!-- Bootstrap JS -->
+
+{% block script %}
+{% endblock %}
+</body>
+</html>

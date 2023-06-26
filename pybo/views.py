@@ -66,3 +66,9 @@ def recommend(request):
     추천 페이지
     """
     return render(request,'recommend.html')
+
+def test(request):
+    """
+    index test 페이지
+    """
+    return render(request,'test/main2.html')
