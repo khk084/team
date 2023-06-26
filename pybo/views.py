@@ -38,7 +38,7 @@ def recommend_food(request):
         'food': random_food
     }
 
-    return render(request, 'pybo/recommend_food.html', context)
+    return render(request, 'recommend.html', context)
 
 
 def records(request):
