@@ -24,6 +24,6 @@ urlpatterns = [
     path('pybo/', include('pybo.urls')),
     path('recommend-food/', views.recommend_food, name='recommend_food'),
     path('common/', include('common.urls')),
-    path('recommend/', views.recommend),
+    path('recommend/', views.recommend_food),
     path('test/',views.test),  # index test 페이지
 ]
