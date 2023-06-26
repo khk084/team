@@ -4,7 +4,10 @@ import random
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Food, Records
-
+from common.forms import RecordsForm
+from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -17,7 +20,6 @@ def login_page(request):
     로그인 페이지
     """
     return render(request, 'login.html')
-
 
 
 def recommend_food(request):
@@ -52,14 +54,31 @@ def records_detail(request, records_id):
     return render(request, 'pybo/records_detail.html', context)
 
 def submit_rating(request, records_id):
+    # 별점 등록
     if request.method == "POST":
         rating = request.POST.get('rating')
         records = Records.objects.get(id=records_id)
         records.rating = rating
         records.save()
         return redirect('re_detail', records_id=records_id)
+
+    return redirect('re_detail', records_id=records_id)
+
+@login_required(login_url='common:login')
+def records_create(request):
+    # 글쓰기
+    if request.method == 'POST':
+        form = RecordsForm(request.POST)
+        if form.is_valid():
+            records = form.save(commit=False)
+            records.author = request.user
+            records.create_date = timezone.now()
+            records.save()
+            return redirect('index')
     else:
-        return redirect('re_detail', records_id=records_id)
+        form = RecordsForm()
+    context = {'form': form}
+    return render(request, 'pybo/records_form.html', {'form': form})
 
 def recommend(request):
     """
