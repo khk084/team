@@ -1,5 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<style>
+    .star-rating {
+        display: inline-block;
+        unicode-bidi: bidi-override;
+        direction: rtl;
+    }
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url('{% static 'star-empty.png' %}'); /* 빈 별 이미지 경로로 대체해야 함 */
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label {
+        background-image: url('{% static 'star-filled.png' %}'); /* 채워진 별 이미지 경로로 대체해야 함 */
+    }
+
+    .star-filled {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url('{% static 'star-filled.png' %}'); /* 채워진 별 이미지 경로로 대체해야 함 */
+        background-size: cover;
+    }
+
+    .star-empty {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url('{% static 'star-empty.png' %}'); /* 빈 별 이미지 경로로 대체해야 함 */
+        background-size: cover;
+    }
+</style>
 <div class="container my-3">
     <h2 class="border-bottom py-2">{{ records.subject }}</h2>
     <div class="card my-3">
@@ -9,11 +51,19 @@
             </div>
             <div class="d-flex justify-content-end">
                 <div class="badge badge-light p-2">
-                    {% if records.rating %}
-                        <p>등록된 별점 {{ records.rating }}점</p>
-                    {% else %}
-                        <p>별점이 등록되지 않았습니다.</p>
-                    {% endif %}
+                    <p>별점:
+                        {% if records.rating %}
+                            {% for i in "54321" %}
+                                {% if i|add:0 >= records.rating|add:0 %}
+                                    <span class="star-filled"></span>
+                                {% else %}
+                                    <span class="star-empty"></span>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            별점이 등록되지 않았습니다.
+                        {% endif %}
+                    </p>
                     {{ records.create_date }}
                 </div>
             </div>
@@ -23,9 +73,18 @@
         <h4>별점 등록하기</h4>
         <form method="post" action="{% url 'submit_rating' records_id=records.id %}">
             {% csrf_token %}
-            {% for i in "12345" %}
-                <button type="submit" name="rating" value="{{ i }}" class="btn btn-primary mx-1">{{ i }}점</button>
-            {% endfor %}
+            <div class="star-rating">
+                {% for i in "12345" %}
+                    <input type="radio" name="rating" id="input-star{{ i }}" value="{{ i }}"
+                           {% if records.rating %} disabled {% endif %}>
+                    <label for="input-star{{ i }}"></label>
+                {% endfor %}
+            </div>
+            <div>
+            <button type="submit" class="btn btn-primary mx-1"
+                    {% if records.rating %} disabled {% endif %}>별점 등록</button>
+            </div>
         </form>
     </div>
 </div>
+{% endblock %}

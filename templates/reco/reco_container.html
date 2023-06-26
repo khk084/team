@@ -1,21 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>recommend_container</title>
-</head>
-<body>
+{% extends 'base2.html' %}
+{% block content %}
 
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;">
-    <iframe src="../pybo/recommend_food.html" width="500" height="300" frameborder="0"></iframe>
+    <div class="col-md-12">
+                <div id="food-details" class="card">
+                    <div class="card-body">
+                        <h4> {{food.menu }} </h4>
+                        <h4> {{ food.price }} </h4>
+                        <h1 class="card-title">{{ food.name }}</h1>
+                    </div>
+                </div>
+    </div>
+
 </div>
 
 
 <div style="text-align:center;">
     <!-- 리셋 버튼 -->
-    <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;" type="reset" id="reset">다시</button>
+    <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
+    border: none; cursor: pointer;">다시</a>
+
     <!-- 확인 버튼 -->
     <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;" type="submit" id="submit">확인</button>
@@ -28,5 +33,4 @@
 
 </div>
 
-</body>
-</html>
+{% endblock %}

@@ -1,32 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<style>
+    .star-rating {
+        display: inline-block;
+        unicode-bidi: bidi-override;
+        direction: rtl;
+    }
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url('{% static 'star-empty.png' %}'); /* 빈 별 이미지 경로로 대체해야 함 */
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label {
+        background-image: url('{% static 'star-filled.png' %}'); /* 채워진 별 이미지 경로로 대체해야 함 */
+    }
+
+    .star-filled {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url('{% static 'star-filled.png' %}'); /* 채워진 별 이미지 경로로 대체해야 함 */
+        background-size: cover;
+    }
+
+    .star-empty {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-image: url('{% static 'star-empty.png' %}'); /* 빈 별 이미지 경로로 대체해야 함 */
+        background-size: cover;
+    }
+</style>
 <div class="container my-3">
     <table class="table">
         <thead>
-        <tr class="thead-dark">
-            <th>번호</th>
-            <th>제목</th>
-            <th>작성일시</th>
-        </tr>
+            <tr class="text-center thead-dark">
+                <th>번호</th>
+                <th style="width:30%">제목</th>
+                <th>별점</th>
+                <th>글쓴이</th>
+                <th>작성일시</th>
+            </tr>
         </thead>
         <tbody>
-        {% if records_list %}
-        {% for records in records_list %}
-        <tr>
-            <td>{{ forloop.counter }}</td>
-            <td>
-                <a href="{% url 're_detail' records.id %}">
-                    {{ records.subject }}
-                </a>
-            </td>
-            <td>{{ records.create_date }}</td>
-        </tr>
-        {% endfor %}
-        {% else %}
-        <tr>
-            <td colspan="3">기록이 없습니다</td>
-        </tr>
-        {% endif %}
+            {% if records_list %}
+                {% for records in records_list %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <a href="{% url 're_detail' records.id %}">
+                            {{ records.subject }}
+                        </a>
+                    </td>
+                    <td>
+                        <div class="star-rating">
+                            {% for i in "12345" %}
+                                {% if i|add:0 >= records.rating|add:0 %}
+                                    <span class="star-filled"></span>
+                                {% else %}
+                                    <span class="star-empty"></span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </td>
+                    <td>{{ records.create_date }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">기록이 없습니다</td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
+    <a href="{% url 'records_create' %}" class="btn btn-primary">
+        글쓰기
+    </a>
 </div>
+{% endblock %}
