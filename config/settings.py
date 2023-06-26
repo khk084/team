@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from django.contrib.auth import get_user_model
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -124,7 +125,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-
+AUTH_USER_MODEL = 'common.CustomUser'
 
 #로그인 로그아웃 성공 시 자동으로 이동할 url
 LOGIN_REDIRECT_URL = '/'

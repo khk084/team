@@ -1,4 +1,5 @@
 from django.db import models
+from common.models import CustomUser
 
 # Create your models here.
 
@@ -16,6 +17,7 @@ class Food(models.Model):
 
 
 class Records(models.Model):
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=100)
     content = models.TextField()
     create_date = models.DateTimeField()
