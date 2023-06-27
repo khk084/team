@@ -1,47 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-<style>
-    .star-rating {
-        display: inline-block;
-        unicode-bidi: bidi-override;
-        direction: rtl;
-    }
 
-    .star-rating input[type="radio"] {
-        display: none;
-    }
-
-    .star-rating label {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-image: url('{% static 'star-empty.png' %}'); /* 빈 별 이미지 경로로 대체해야 함 */
-        background-size: cover;
-        cursor: pointer;
-    }
-
-    .star-rating input[type="radio"]:checked ~ label {
-        background-image: url('{% static 'star-filled.png' %}'); /* 채워진 별 이미지 경로로 대체해야 함 */
-    }
-
-    .star-filled {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-image: url('{% static 'star-filled.png' %}'); /* 채워진 별 이미지 경로로 대체해야 함 */
-        background-size: cover;
-    }
-
-    .star-empty {
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        background-image: url('{% static 'star-empty.png' %}'); /* 빈 별 이미지 경로로 대체해야 함 */
-        background-size: cover;
-    }
-</style>
 <div class="container my-3">
     <h2 class="border-bottom py-2">{{ records.subject }}</h2>
     <div class="card my-3">
@@ -64,7 +23,7 @@
                             별점이 등록되지 않았습니다.
                         {% endif %}
                     </p>
-                    {{ records.create_date }}
+                    {{ records.modify_date|default:records.create_date }}
                 </div>
             </div>
         </div>
@@ -84,7 +43,28 @@
             <button type="submit" class="btn btn-primary mx-1"
                     {% if records.rating %} disabled {% endif %}>별점 등록</button>
             </div>
+            {% if request.user == records.author %}
+            <div class="my-3">
+                <a href="{% url 'records_modify' records.id %}"
+                   class="btn btn-sm btn-outline-secondary">수정</a>
+                <a href="#" class="delete btn btn-sm btn-outline-secondary"
+                   data-url="{% url 'records_delete' records.id %}">삭제</a>
+            </div>
+            {% endif %}
         </form>
     </div>
 </div>
+{% endblock %}
+
+<!--질문 삭제-->
+{% block script %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".delete").on('click', function() {
+            if(confirm("정말로 삭제하시겠습니까?")) {
+                location.href = $(this).data('url');
+            }
+        });
+    });
+</script>
 {% endblock %}
