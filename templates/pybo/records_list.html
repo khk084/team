@@ -47,7 +47,6 @@
         <thead>
             <tr class="text-center thead-dark">
                 <th>번호</th>
-                <th>메뉴</th>
                 <th style="width:30%">제목</th>
                 <th>별점</th>
                 <th>글쓴이</th>
@@ -57,9 +56,8 @@
         <tbody>
             {% if records_list %}
                 {% for records in records_list %}
-                <tr class="text-center">
+                <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ records.food.menu }}</td>
                     <td>
                         <a href="{% url 're_detail' records.id %}">
                             {{ records.subject }}
@@ -76,7 +74,6 @@
                             {% endfor %}
                         </div>
                     </td>
-                    <td>{{ records.author.username }}</td>
                     <td>{{ records.create_date }}</td>
                 </tr>
                 {% endfor %}
