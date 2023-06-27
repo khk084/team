@@ -17,6 +17,7 @@ class Food(models.Model):
 
 
 class Records(models.Model):
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=100)
     content = models.TextField()
