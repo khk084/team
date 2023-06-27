@@ -3,11 +3,11 @@ from common.models import CustomUser
 
 # Create your models here.
 class Food(models.Model):
-    name = models.CharField(max_length=100)
-    menu = models.CharField(max_length=100)
-    price = models.CharField(max_length=100)
+    foodname = models.CharField(max_length=100)
+    foodtype = models.CharField(max_length=100)
+    foodprice = models.CharField(max_length=100)
     def __str__(self):
-        return self.name
+        return self.foodname
 
 
 class Records(models.Model):
@@ -25,4 +25,4 @@ class Records(models.Model):
 
     @property
     def food_menu(self):
-        return self.food.name if self.food else ""
+        return self.food.foodname if self.food else ""

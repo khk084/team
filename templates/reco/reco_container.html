@@ -7,9 +7,9 @@
                 <div id="food-details" class="card">
                     <div class="card-body">
                         <div id="map" style="width:500px;height:400px; margin:auto;"></div>
-                        <h4> {{food.menu }} </h4>
-                        <h4> {{ food.price }} </h4>
-                        <h1 class="card-title">{{ food.name }}</h1>
+                        <h4> {{food.foodtype }} </h4>
+                        <h4> {{ food.foodprice }} </h4>
+                        <h1 class="card-title">{{ food.foodname }}</h1>
                     </div>
                 </div>
     </div>
@@ -23,7 +23,7 @@
     border: none; cursor: pointer;">다시</a>
 
     <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food.menu }}&food_name={{ food.name }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
+    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food.foodtype }}&food_name={{ food.foodname }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
         border: none; cursor: pointer;">확인</a>
 
 
