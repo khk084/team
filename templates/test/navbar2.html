@@ -1,10 +1,10 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary" id="navbar1">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" id="navbar1">
   <div class="container">
     <a class="navbar-brand mr-1 mb-1 mt-0" href="../">PyFood</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-expanded="true">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar" aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="navbar-collapse justify-content-center collapse show" id="collapsingNavbar" style="">
+    <div class="navbar-collapse justify-content-center collapse" id="collapsingNavbar" style="">
       <ul class="navbar-nav">
         <li class="nav-item">
           {% if user.is_authenticated %}
@@ -26,6 +26,7 @@
             Recommends
           </a>
           <div class="dropdown-menu" aria-labelledby="recommendsDd">
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend/">전   체</a>
             <a class="dropdown-item px-2 " href="#">한   식</a>
             <a class="dropdown-item px-2 " href="#">중   식</a>
             <a class="dropdown-item px-2 " href="#">일   식</a>
@@ -40,7 +41,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="recordsDd">
             <a class="dropdown-item px-2" href="#">기 록 하 기</a>
-            <a class="dropdown-item px-2" href="#">조 회 하 기</a>
+            <a class="dropdown-item px-2" href="/pybo/records/">조 회 하 기</a>
           </div>
         </li>
         <li class="nav-item">
