@@ -17,7 +17,7 @@ class RecordsForm(forms.ModelForm):
     rating = forms.ChoiceField(choices=[(str(i), str(i)) for i in range(1, 6)], label='별점')
     class Meta:
         model = Records
-        fields = ['subject', 'content', 'rating']
+        fields = ['subject', 'content', 'rating', 'menu', 'food_name']
         widgets = {
             'subject': forms.TextInput(attrs={'class':'form-control'}),
             'content': forms.Textarea(attrs={'class':'form-control', 'rows': 10}),

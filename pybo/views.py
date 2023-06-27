@@ -1,13 +1,11 @@
-from django.shortcuts import render
 import random
 
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.contrib import messages
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Food, Records
 from common.forms import RecordsForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
 
 # Create your views here.
 
@@ -73,14 +71,48 @@ def records_create(request):
             records = form.save(commit=False)
             records.author = request.user
             records.create_date = timezone.now()
-            records.food_name = request.GET.get('food_name')  # Get the menu value from URL parameters
+            records.food_name = request.GET.get('food_name')
             records.menu = request.GET.get('food_menu')
             records.save()
-            return redirect('index')
+            return redirect('records')
     else:
         form = RecordsForm()
     context = {'form': form}
     return render(request, 'pybo/records_form.html', context)
+
+@login_required(login_url='common:login')
+def records_modify(request, records_id):
+    # 글쓰기 수정
+    records = get_object_or_404(Records, pk=records_id)
+    if request.user != records.author:
+        messages.error(request, '수정권한이 없습니다')
+        return redirect('re_detail', records_id=records.id)
+
+    if request.method == "POST":
+        form = RecordsForm(request.POST, instance=records)
+        if form.is_valid():
+            records = form.save(commit=False)
+            records.author = request.user
+            records.modify_date = timezone.now()
+            records.save()
+            return redirect('re_detail', records_id=records.id)
+    else:
+        form = RecordsForm(instance=records, initial={
+            'menu': records.menu,
+            'food_name': records.food_name
+        })
+    context = {'form': form}
+    return render(request, 'pybo/records_form.html', context)
+    
+@login_required(login_url='common:login')
+def records_delete(request, records_id):
+    # 글쓰기 삭제
+    records = get_object_or_404(Records, pk=records_id)
+    if request.user != records.author:
+        messages.error(request, '삭제권한이 없습니다')
+        return redirect('re_detail', records_id=records_id)
+    records.delete()
+    return redirect('records')
 
 def recommend(request):
     """
