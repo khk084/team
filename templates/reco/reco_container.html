@@ -6,7 +6,7 @@
     <div class="col-md-12">
                 <div id="food-details" class="card">
                     <div class="card-body">
-                        <h4> {{ food.menu }} </h4>
+                        <h4> {{food.menu }} </h4>
                         <h4> {{ food.price }} </h4>
                         <h1 class="card-title">{{ food.name }}</h1>
                     </div>
@@ -22,8 +22,8 @@
     border: none; cursor: pointer;">다시</a>
 
     <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&menu={{ food.menu }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;">확인</a>
+    <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
+    border: none; cursor: pointer;" type="submit" id="submit">확인</button>
 
     <!-- 검색 버튼 ***수정필요***-->
     <!-- <form action="/search" method="get"> -->
