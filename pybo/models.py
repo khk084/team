@@ -2,8 +2,6 @@ from django.db import models
 from common.models import CustomUser
 
 # Create your models here.
-
-
 class Food(models.Model):
     name = models.CharField(max_length=100)
     menu = models.CharField(max_length=100)
