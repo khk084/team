@@ -23,8 +23,9 @@
     border: none; cursor: pointer;">다시</a>
 
     <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&menu={{ food.menu }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;">확인</a>
+    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food.menu }}&food_name={{ food.name }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
+        border: none; cursor: pointer;">확인</a>
+
 
     <!-- 검색 버튼 ***수정필요***-->
     <!-- <form action="/search" method="get"> -->

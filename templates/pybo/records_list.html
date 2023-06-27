@@ -59,7 +59,7 @@
                 {% for records in records_list %}
                 <tr class="text-center">
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ records.food.menu }}</td>
+                    <td>{{ records.menu }}</td>
                     <td>
                         <a href="{% url 're_detail' records.id %}">
                             {{ records.subject }}
