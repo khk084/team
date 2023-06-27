@@ -73,12 +73,14 @@ def records_create(request):
             records = form.save(commit=False)
             records.author = request.user
             records.create_date = timezone.now()
+            records.food_name = request.GET.get('food_name')  # Get the menu value from URL parameters
+            records.menu = request.GET.get('food_menu')
             records.save()
             return redirect('index')
     else:
         form = RecordsForm()
     context = {'form': form}
-    return render(request, 'pybo/records_form.html', {'form': form})
+    return render(request, 'pybo/records_form.html', context)
 
 def recommend(request):
     """
