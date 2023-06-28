@@ -37,10 +37,14 @@ def recommend_food(request):
     # 랜덤한 음식을 선택
     random_food = random.choice(foods)
 
+    # address 변수를 가져와서 템플릿 컨텍스트에 추가
+    address = request.GET.get('address')
+
     context = {
         'food_name': random_food.foodname,
         'food_type': random_food.foodtype,
         'food_price': random_food.foodprice,
+        'address': address,
     }
 
     return render(request, 'recommend.html', context)
