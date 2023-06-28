@@ -1,13 +1,11 @@
 import random
 
-from django.core.paginator import Paginator
 from django.contrib import messages
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Food, Records
 from common.forms import RecordsForm
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q, Count
 
 # Create your views here.
 
@@ -43,34 +41,13 @@ def recommend_food(request):
 
 def records(request):
     # 기록보기
-    page = request.GET.get('page', '1')
-    kw = request.GET.get('kw', '')
-    so = request.GET.get('so', 'recent')
-
-    if so =='recommend':
-        records_list = Records.objects.order_by('rating', '-create_date')
-    elif so == 'views':
-        records_list = Records.objects.order_by('-views', '-create_date')
-    else: # 최신순
-        records_list = Records.objects.order_by('-create_date')
-
-    if kw:
-        records_list = records_list.filter(
-            Q(subject__icontains=kw) |
-            Q(content__icontains=kw) |
-            Q(menu__icontains=kw) |
-            Q(author__username__icontains=kw)
-        ).distinct()
-    paginator = Paginator(records_list, 5) # 페이지당 숫자만큼 게시물 보여줌
-    page_obj = paginator.get_page(page)
-    context = {'records_list': page_obj}
+    records_list = Records.objects.order_by('-create_date')
+    context = {'records_list': records_list}
     return render(request, 'pybo/records_list.html', context)
 
 def records_detail(request, records_id):
     # 기록보기 상세
     records = Records.objects.get(id=records_id)
-    records.views += 1  # 조회수 증가
-    records.save()
     context = {'records': records}
     return render(request, 'pybo/records_detail.html', context)
 

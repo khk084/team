@@ -1,31 +1,7 @@
 {% extends 'base.html' %}
-{% load food_filter %}
 {% block content %}
 
 <div class="container my-3">
-    <div class="row justify-content-between my-3">
-        <div class="col-2">
-            <select class="form-control so" id="sortOption">
-                <option value="recent" {% if so == 'recent' %}selected{% endif %}>
-                    최신순
-                </option>
-                <option value="recommend" {% if so == 'recommend' %}selected{% endif %}>
-                    별점순
-                </option>
-                <option value="views" {% if so == 'views' %}selected{% endif %}>
-                    조회수
-                </option>
-            </select>
-        </div>
-        <div class="col-4 input-group">
-            <input type="text" class="form-control kw"
-                   value="{{ kw|default_if_none:'' }}">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary"
-                        type="button" id="btn_search">찾기</button>
-            </div>
-        </div>
-    </div>
     <table class="table">
         <thead>
             <tr class="text-center thead-dark">
@@ -35,14 +11,13 @@
                 <th>별점</th>
                 <th>글쓴이</th>
                 <th>작성일시</th>
-                <th>조회수</th>
             </tr>
         </thead>
         <tbody>
             {% if records_list %}
                 {% for records in records_list %}
                 <tr class="text-center">
-                    <td>{{ records_list.paginator.count|sub:records_list.start_index|sub:forloop.counter0|add:1 }}</td>
+                    <td>{{ forloop.counter }}</td>
                     <td>{{ records.menu }}</td>
                     <td>
                         <a href="{% url 're_detail' records.id %}">
@@ -61,8 +36,7 @@
                         </div>
                     </td>
                     <td>{{ records.author.username }}</td>
-                    <td>{{ records.modify_date|default:records.create_date|date:"Y-m-d H:i" }}</td>
-                    <td>{{ records.views }}</td>
+                    <td>{{ records.modify_date|default:records.create_date }}</td>
                 </tr>
                 {% endfor %}
             {% else %}
@@ -72,102 +46,8 @@
             {% endif %}
         </tbody>
     </table>
-
-    <!--  페이징 처리  -->
-    <ul class="pagination justify-content-center">
-        <!--    이전 페이지    -->
-        {% if records_list.has_previous %}
-        <li class="page-item">
-            <a class="page-link"
-               href="#" data-page="{{ records_list.previous_page_number }}">
-                이전
-            </a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                이전
-            </a>
-        </li>
-        {% endif %}
-        <!--    페이지 리스트    -->
-        {% for page_number in records_list.paginator.page_range %}
-        {% if page_number >= records_list.number|add:-2 and page_number <= records_list.number|add:5 %}
-            {% if page_number == records_list.number %}
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#" data-page="{{ page_number }}">
-                    {{ page_number }}
-                </a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="#" data-page="{{ page_number }}">
-                    {{ page_number }}
-                </a>
-            </li>
-            {% endif %}
-        {% endif %}
-        {% endfor %}
-        <!--    다음 페이지    -->
-        {% if records_list.has_next %}
-        <li class="page-item">
-            <a class="page-link"
-               href="#" data-page="{{ records_list.next_page_number }}">
-                다음
-            </a>
-        </li>
-        {% else %}
-        <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
-                다음
-            </a>
-        </li>
-        {% endif %}
-    </ul>
-    <!--  페이징 끝  -->
-
     <a href="{% url 'records_create' %}" class="btn btn-primary">
         글쓰기
     </a>
 </div>
-<form id="searchForm" method="get" action="{% url 'records' %}">
-    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
-    <input type="hidden" id="page" name="page" value="{{ page }}">
-    <input type="hidden" id="so" name="so" value="{{ so }}">
-</form>
-{% endblock %}
-{% block script %}
-<script type="text/javascript">
-    $(document).ready(function(){
-        var savedSortOption = localStorage.getItem('sortOption');
-        if (savedSortOption) {
-            $("#sortOption").val(savedSortOption);
-        }
-
-        $(".so").on('change', function() {
-            var selectedOption = $(this).val();
-            if (selectedOption === 'recommend') {
-                selectedOption = 'recommend';
-            }
-            localStorage.setItem('sortOption', selectedOption);
-            $("#so").val(selectedOption);
-            $("#page").val(1);
-            $("#searchForm").submit();
-        });
-
-        $(".page-link").on('click', function() {
-            var selectedOption = $("#sortOption").val();
-            localStorage.setItem('sortOption', selectedOption);
-            $("#page").val($(this).data("page"));
-            $("#so").val(selectedOption);
-            $("#searchForm").submit();
-        });
-
-        $("#btn_search").on('click', function() {
-            $("#kw").val($(".kw").val());
-            $("#page").val(1);
-            $("#searchForm").submit();
-        });
-    });
-</script>
 {% endblock %}

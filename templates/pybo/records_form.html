@@ -7,12 +7,12 @@
         {% csrf_token %}
         <div class="form-group">
             {% if form.food_name.value %}
-                <p>음식 분류 : {{ form.food_name.value }}</p>
+                <p>음식 분류 : {{ form.food_name }}</p>
             {% else %}
                 <p>음식 분류 : {{ request.GET.food_name }}</p>
             {% endif %}
             {% if form.menu.value %}
-                <p>음식 메뉴 : {{ form.menu.value }}</p>
+                <p>음식 분류 : {{ form.menu }}</p>
             {% else %}
                 <p>음식 메뉴 : {{ request.GET.food_menu }}</p>
             {% endif %}

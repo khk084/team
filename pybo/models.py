@@ -20,7 +20,6 @@ class Records(models.Model):
     create_date = models.DateTimeField()
     modify_date = models.DateTimeField(null=True, blank=True)
     rating = models.IntegerField(blank=True, null=True) # 별점
-    views = models.IntegerField(default=0) # 조회수 필드
     def __str__(self):
         return self.subject
 
