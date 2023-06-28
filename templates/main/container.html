@@ -1,16 +1,37 @@
 {% load static %}
-<!-- 추천탭 -->
-<div id="recommend" style="height:100px; background-color:yellow">
-    <h3><a href="http://localhost:8000/recommend/">추천</a></h3>
-</div>
 
-<!-- 기록탭 -->
-<div id="record" style="height:100px; background-color:white">
-    <h3><a href="{% url 'records_create' %}">기록하기</a></h3>
-</div>
+<header class="bg-primary">
+  <div class="container h-100">
+    <div class="row h-100">
+      <div class="col-12">
+        <div class="text-center m-0 vh-100 d-flex flex-column justify-content-center text-light">
+          <h1 class="display-4"><b>Choose Your Menu!</b></h1>
+          <p class="lead">오늘은 이거 어때? </p>
 
-<!-- 기록 결과 탭-->
+          <div class="mt-2 mx-auto">
+            <div class="btn-group">
+              <a href="http://localhost:8000/recommend/" class="btn btn-outline-light btn-lg">
+                Recommends
+              </a>
+            </div>
+          </div>
 
-<div id="check" style="height:100px; background-color:green">
-    <h3><a href="/pybo/records/">기록보기</a></h3>
-</div>
+          <div class="mt-2 mx-auto">
+            <div class="btn-group">
+              <a href="#" class="btn btn-outline-light btn-lg">
+                Records
+              </a>
+              <button type="button" class="btn btn-lg btn-outline-light dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Downloads</span>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{% url 'records_create' %}">기록하기</a>
+                <a class="dropdown-item" href="/pybo/records/">조회하기</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
