@@ -21,19 +21,26 @@ def login_page(request):
 
 
 def recommend_food(request):
+    food_type = request.GET.get('food_type')
     #모든 음식 조회
-    all_food = Food.objects.all()
+    foods = Food.objects.all()
 
     # 음식이 존재하지 않을 경우에 대한 예외 처리
 
-    if not all_food:
+    if not foods.exists():
         return render(request, 'pybo/no_food.html')
 
+    # 특정 분류의 음식이 선택되었을 경우
+    if food_type:
+        foods = foods.filter(foodtype=food_type)
+
     # 랜덤한 음식을 선택
-    random_food = random.choice(all_food)
+    random_food = random.choice(foods)
 
     context = {
-        'food': random_food
+        'food_name': random_food.foodname,
+        'food_type': random_food.foodtype,
+        'food_price': random_food.foodprice,
     }
 
     return render(request, 'recommend.html', context)

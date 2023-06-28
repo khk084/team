@@ -3,14 +3,12 @@
 
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;" >
-
-    <div class="col-md-12">
                 <div id="food-details" class="card">
                     <div class="card-body">
                         <div id="map" style="width:500px;height:400px; margin:auto;"></div>
-                        <h4> {{food.foodtype }} </h4>
-                        <h4> {{ food.foodprice }} </h4>
-                        <h1 class="card-title">{{ food.foodname }}</h1>
+                        <h4> {{ food_type }} </h4>
+                        <h4> {{ food_price }} </h4>
+                        <h1 class="card-title">{{ food_name }}</h1>
                     </div>
                 </div>
     </div>
@@ -19,12 +17,29 @@
 
 
 <div style="text-align:center;">
-    <!-- 리셋 버튼 -->
+    <div class="col-md-12">
+        <form method="GET" action="{% url 'recommend_food' %}">
+            <div class="form-group">
+                <label for="foodTypeSelect"Select Food Type:></label>
+                <select id="foodTypeSelect" name="food_type" class="form-control so">
+                    <option value="" selected>All</option>
+                    <option value="디저트">디저트</option>
+                    <option value="중식">중식</option>
+                    <option value="양식">양식</option>
+                    <option value="한식">한식</option>
+                    <option value="일식">일식</option>
+                      <!-- 추가적인 분류 옵션들 -->
+                </select>
+            </div>
+
+
+
+    <!-- 리셋 버튼
     <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;">다시</a>
+    border: none; cursor: pointer;">다시</a> -->
 
     <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food.foodtype }}&food_name={{ food.foodname }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
+    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_type }}&food_name={{ food_name }}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
         border: none; cursor: pointer;">확인</a>
 
 
@@ -33,6 +48,8 @@
     <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;" type="submit" id="search">검색</button>
     <!-- </form> -->
+        </form>
+        </div>
 
 </div>
 
@@ -58,7 +75,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var ps = new kakao.maps.services.Places();
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('강남역 {{food.foodname}}', placesSearchCB);
+ps.keywordSearch('강남역 {{food_name}}', placesSearchCB);
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
