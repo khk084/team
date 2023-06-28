@@ -3,6 +3,7 @@
 
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;" >
+
     <div class="col-md-12">
                 <div id="food-details" class="card">
                     <div class="card-body">
@@ -57,7 +58,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var ps = new kakao.maps.services.Places();
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('강남역 {{food.name}}', placesSearchCB);
+ps.keywordSearch('강남역 {{food.foodname}}', placesSearchCB);
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
