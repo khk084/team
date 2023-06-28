@@ -15,8 +15,9 @@
 
 <div style="text-align:center;">
     <div class="col-md-12">
-        <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()">
-            <div class="form-group">
+        <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()"
+              style="display: flex; justify-content: center; align-items: center;">
+            <div class="form-group" style="margin-right: 10px;">
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="" selected>All</option>
@@ -30,7 +31,7 @@
             </div>
 
             <!-- 주소 입력 폼 -->
-            <div class="form-group">
+            <div class="form-group" style="margin-right: 10px;">
         <label for="addressInput">주소를 입력해주세요.</label>
         <input type="text" id="addressInput" name="address" class="form-control">
       </div>
@@ -39,15 +40,16 @@
     <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;">다시</a> -->
 
-    <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
-        border: none; cursor: pointer;">확인</a>
-
-
-    <!-- 검색 버튼 -->
+        <!-- 검색 버튼 -->
 
     <button style="background-color: gray; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;" type="submit" id="search">검색</button>
+    border: none; cursor: pointer; margin-right: 10px;" type="submit" id="search">검색</button>
+    <!-- 확인 버튼 -->
+    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
+        border: none; cursor: pointer; margin-right: 10px;">확인</a>
+
+
+
         </form>
         </div>
 
