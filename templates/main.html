@@ -1,21 +1,22 @@
 
-{% extends 'base.html' %}
+{% extends 'test/base22.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
+
+
     <title>Main</title>
+
+
 </head>
 <body>
 
 {% block content %}
 
-<!-- 헤더 -->
-<div id="header">{% include 'main/header.html' %}</div>
 <!-- 본문 -->
-<div id="container">{% include 'main/container.html' %}</div>
-
-<div id="footer">{% include 'main/footer.html' %}</div>
+<div id="container">{% include 'test/container2.html' %}</div>
 
 {% endblock %}

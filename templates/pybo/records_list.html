@@ -45,7 +45,7 @@
                     <td>{{ records_list.paginator.count|sub:records_list.start_index|sub:forloop.counter0|add:1 }}</td>
                     <td>{{ records.menu }}</td>
                     <td>
-                        <a href="{% url 're_detail' records.id %}">
+                        <a href="{% url 're_detail' records.id %}" class="text-secondary">
                             {{ records.subject }}
                         </a>
                     </td>
@@ -126,7 +126,7 @@
     </ul>
     <!--  페이징 끝  -->
 
-    <a href="{% url 'records_create' %}" class="btn btn-primary">
+    <a href="{% url 'records_create' %}" class="btn btn-secondary">
         글쓰기
     </a>
 </div>
