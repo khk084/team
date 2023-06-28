@@ -13,14 +13,14 @@
                 </div>
     </div>
 
-</div>
+
 
 
 <div style="text-align:center;">
     <div class="col-md-12">
-        <form method="GET" action="{% url 'recommend_food' %}">
+        <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()">
             <div class="form-group">
-                <label for="foodTypeSelect"Select Food Type:></label>
+                <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="" selected>All</option>
                     <option value="디저트">디저트</option>
@@ -32,7 +32,11 @@
                 </select>
             </div>
 
-
+            <!-- 주소 입력 폼 -->
+            <div class="form-group">
+        <label for="addressInput">주소를 입력해주세요.</label>
+        <input type="text" id="addressInput" name="address" class="form-control">
+      </div>
 
     <!-- 리셋 버튼
     <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
@@ -43,15 +47,23 @@
         border: none; cursor: pointer;">확인</a>
 
 
-    <!-- 검색 버튼 ***수정필요***-->
-    <!-- <form action="/search" method="get"> -->
+    <!-- 검색 버튼 -->
+
     <button style="background-color: #4CAF50; color: white; padding: 10px 20px;
     border: none; cursor: pointer;" type="submit" id="search">검색</button>
-    <!-- </form> -->
         </form>
         </div>
 
 </div>
+
+<!-- 자바스크립트 코드 삽입 -->
+<script>
+function getAddress() {
+  var address = document.getElementById('addressInput').value;
+  var addressElement = document.getElementById('addressOutput');
+  addressElement.textContent = address;
+}
+</script>
 
 
 
@@ -75,7 +87,8 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 var ps = new kakao.maps.services.Places();
 
 // 키워드로 장소를 검색합니다
-ps.keywordSearch('강남역 {{food_name}}', placesSearchCB);
+ps.keywordSearch('{{address}} {{food_name}}', placesSearchCB);
+
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
