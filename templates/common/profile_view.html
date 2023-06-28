@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-3">
+    <h2 class="text-center mb-4">회원정보</h2>
+        <div class="form-group">
+            <p>성 : {{ user.first_name|default_if_none:'' }}</p>
+        </div>
+        <div class="form-group">
+            <p>이름 : {{ user.last_name|default_if_none:'' }}</p>
+        </div>
+        <div class="form-group">
+            <p>닉네임 : {{ user.nickname|default_if_none:'' }}</p>
+        </div>
+        <div class="form-group">
+            <p>아이디 : {{ user.username|default_if_none:'' }}</p>
+        </div>
+        <div class="form-group">
+            <p>전화번호 : {{ user.phone|default_if_none:'' }}</p>
+        </div>
+        <div class="form-group">
+            <p>이메일 : {{ user.email|default_if_none:'' }}</p>
+        </div>
+        <div class="form-group">
+            <p>주소 : {{ user.address|default_if_none:'' }}</p>
+        </div>
+    <a href="{% url 'common:profile_update' user_id=request.user.pk %}" class="btn btn-secondary">수정하기</a>
+</div>
+
+{% endblock %}
