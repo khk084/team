@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-3">
+    <h2 class="text-center mb-4">회원정보</h2>
+        <form method="post" class="post-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_first_name">성</label>
+                <input type="text" class="form-control" name="first_name" id="id_first_name"
+                    value="{{ user.first_name|default_if_none:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="id_last_name">이름</label>
+                <input type="text" class="form-control" name="last_name" id="id_last_name"
+                    value="{{ user.last_name|default_if_none:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="nickname">닉네임</label>
+                <input type="text" class="form-control" name="nickname" id="nickname"
+                    value="{{ user.nickname|default_if_none:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="username">아이디</label>
+                <input type="text" class="form-control" name="username" id="username"
+                    value="{{ user.username|default_if_none:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="phone">전화번호</label>
+                <input type="text" class="form-control" name="phone" id="phone"
+                    value="{{ user.phone|default_if_none:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="text" class="form-control" name="email" id="email"
+                    value="{{ user.email|default_if_none:'' }}">
+            </div>
+            <div class="form-group">
+                <label for="address">주소</label>
+                <input type="text" class="form-control" name="address" id="address"
+                    value="{{ user.address|default_if_none:'' }}">
+            </div>
+            <button type="submit" class="btn btn-secondary">수정하기</button>
+        </form>
+</div>
+
+{% endblock %}
