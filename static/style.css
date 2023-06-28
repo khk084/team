@@ -1,3 +1,7 @@
+.lobster-main{
+    font-family: 'Lobster', cursive;
+    font-size: 96px;
+}
 
 .star-rating {
     display: inline-block;
