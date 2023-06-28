@@ -1,7 +1,32 @@
+/* 폰트 목록 */
+
 .lobster-main{
     font-family: 'Lobster', cursive;
     font-size: 96px;
 }
+.lobster-title{
+    font-family: 'Lobster', cursive;
+    font-size: 40px;
+}
+.lilita-main{
+    font-family: 'Lilita One', cursive;
+    font-size: 100px;
+}
+.lilita-title{
+    font-family: 'Lilita One', cursive;
+    font-size: 40px;
+}
+.gowundodum-main{
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 50px;
+}
+.gowundodum-title{
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 30px;
+}
+
+
+/* 별점 */
 
 .star-rating {
     display: inline-block;
