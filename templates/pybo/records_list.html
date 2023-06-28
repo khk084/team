@@ -20,7 +20,7 @@
                     <td>{{ forloop.counter }}</td>
                     <td>{{ records.menu }}</td>
                     <td>
-                        <a href="{% url 're_detail' records.id %}">
+                        <a href="{% url 're_detail' records.id %}" class="text-secondary">
                             {{ records.subject }}
                         </a>
                     </td>
@@ -46,7 +46,7 @@
             {% endif %}
         </tbody>
     </table>
-    <a href="{% url 'records_create' %}" class="btn btn-primary">
+    <a href="{% url 'records_create' %}" class="btn btn-secondary">
         글쓰기
     </a>
 </div>
