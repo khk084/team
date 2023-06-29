@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="container my-3">
-    <h2 class="text-center mb-4">회원정보</h2>
+<div class="container my-3 nanum-context">
+    <h2 class="text-center mb-4"><b>회원정보</b></h2>
         <div class="form-group">
             <p>성 : {{ user.first_name|default_if_none:'' }}</p>
         </div>
