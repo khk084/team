@@ -129,5 +129,5 @@ class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     비밀번호 초기화 - 새로운 비밀번호 입력
     """
     template_name = 'common/password_reset_confirm.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('common:login')
 
