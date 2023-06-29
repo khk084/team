@@ -4,7 +4,7 @@
 <div class="container my-3 nanum-context">
     <h2 class="text-center mb-4"><b>회원정보</b></h2>
     <div class="row">
-        <div class="col-sm-12 p-2">
+        <div class="col-sm-12 p-5">
             <div class="content_block">
                 <ul class="nav nav-tabs">
                   <li class="nav-item">
@@ -15,34 +15,32 @@
                   </li>
                 </ul>
                 <br>
-            <div class="form-group">
-                <p>성 : {{ user.first_name|default_if_none:'' }}</p>
-            </div>
-            <div class="form-group">
-                <p>이름 : {{ user.last_name|default_if_none:'' }}</p>
-            </div>
-            <div class="form-group">
-                <p>닉네임 : {{ user.nickname|default_if_none:'' }}</p>
-            </div>
-            <div class="form-group">
-                <p>아이디 : {{ user.username|default_if_none:'' }}</p>
-            </div>
-            <div class="form-group">
-                <p>전화번호 : {{ user.phone|default_if_none:'' }}</p>
-            </div>
-            <div class="form-group">
-                <p>이메일 : {{ user.email|default_if_none:'' }}</p>
-            </div>
-            <div class="form-group">
-                <p>주소 : {{ user.address|default_if_none:'' }}</p>
-            </div>
-
+                <div class="form-group">
+                    <p>성 : {{ user.first_name|default_if_none:'' }}</p>
+                </div>
+                <div class="form-group">
+                    <p>이름 : {{ user.last_name|default_if_none:'' }}</p>
+                </div>
+                <div class="form-group">
+                    <p>닉네임 : {{ user.nickname|default_if_none:'' }}</p>
+                </div>
+                <div class="form-group">
+                    <p>아이디 : {{ user.username|default_if_none:'' }}</p>
+                </div>
+                <div class="form-group">
+                    <p>전화번호 : {{ user.phone|default_if_none:'' }}</p>
+                </div>
+                <div class="form-group">
+                    <p>이메일 : {{ user.email|default_if_none:'' }}</p>
+                </div>
+                <div class="form-group">
+                    <p>주소 : {{ user.address|default_if_none:'' }}</p>
+                </div>
+                <a href="{% url 'common:profile_update' user_id=request.user.pk %}" class="btn btn-danger">수정하기</a>
+                <a href="{% url 'common:change_password'%}" class="btn btn-danger">비밀번호 변경</a>
 
             </div>
         </div>
     </div>
-    <a href="{% url 'common:profile_update' user_id=request.user.pk %}" class="btn btn-danger">수정하기</a>
-    <a href="{% url 'common:change_password'%}" class="btn btn-danger">비밀번호 변경</a>
 </div>
-
 {% endblock %}
