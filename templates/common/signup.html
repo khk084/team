@@ -13,7 +13,7 @@
         .btn-primary {
             width: 100%;
         } -->
-    <div class="container" >
+    <div class="container nanum-context" >
 
         <h2 class="text-center mb-4">회원가입</h2>
         <form method="post" class="post-form" target="_blank">
@@ -54,7 +54,7 @@
                 <input type="text" class="form-control" name="address" id="address"
                     value="{{ form.address.value|default_if_none:'' }}">
             </div>
-            <button type="submit" class="btn btn-secondary">가입하기</button>
+            <button type="submit" class="btn btn-danger">가입하기</button>
         </form>
     </div>
 
