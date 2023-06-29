@@ -4,7 +4,7 @@
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;" >
                 <div id="food-details" class="card">
-                    <div class="card-body" style="margin:auto;">
+                    <div class="card-body nanum-context" style="margin:auto;">
                         <div id="map" style="width:500px;height:400px; margin:auto; margin-top:10px; margin-bottom:20px"></div>
                         <h4> {{ food_type }} </h4>
                         <h4> {{ food_price }} </h4>
@@ -14,10 +14,10 @@
 </div>
 
 <div style="text-align:center;">
-    <div class="col-md-12">
+    <div class="col-md-12 nanum-context">
         <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()"
               style="display: flex; justify-content: center; align-items: center; height:15vh; ">
-            <div class="form-group" style="margin-right: 10px;">
+            <div class="form-group " style="margin-right: 10px;">
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="" {% if food_type == "" %}selected{% endif %}>All</option>
