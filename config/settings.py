@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.contrib.auth import get_user_model
+# import ssl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -126,6 +127,18 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'common.CustomUser'
+
+# 비밀번호 찾기 이메일 발송
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'imbu26' # 발신자 이메일로 수정
+EMAIL_HOST_PASSWORD = 'wjdek&1122' # 발신자 이메일 비밀번호로 수정
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER # 사이트와 관련한 자동응답을 받을 이메일 주소
+
+# 비민번호 찾기를 위해 임시 사용. 에러 해결 후 삭제 필요
+# ssl._create_default_https_context = ssl._create_unverified_context
 
 #로그인 로그아웃 성공 시 자동으로 이동할 url
 LOGIN_REDIRECT_URL = '/'
