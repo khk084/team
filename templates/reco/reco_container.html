@@ -21,11 +21,11 @@
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="" {% if food_type == "" %}selected{% endif %}>All</option>
-                    <option value="디저트" {% if food_type == "디저트" %}selected{% endif %}>디저트</option>
-                    <option value="중식" {% if food_type == "중식" %}selected{% endif %}>중식</option>
-                    <option value="양식" {% if food_type == "양식" %}selected{% endif %}>양식</option>
                     <option value="한식" {% if food_type == "한식" %}selected{% endif %}>한식</option>
+                    <option value="중식" {% if food_type == "중식" %}selected{% endif %}>중식</option>
                     <option value="일식" {% if food_type == "일식" %}selected{% endif %}>일식</option>
+                    <option value="양식" {% if food_type == "양식" %}selected{% endif %}>양식</option>
+                    <option value="디저트" {% if food_type == "디저트" %}selected{% endif %}>디저트</option>
                       <!-- 추가적인 분류 옵션들 -->
                 </select>
             </div>
@@ -41,11 +41,11 @@
             border: none; cursor: pointer;">다시</a> -->
 
             <!-- 검색 버튼 -->
-            <button style="background-color: gray; color: white; padding: 9px 20px;
+            <button style="background-color: orange; color: white; padding: 9px 20px;
                 border: none; cursor: pointer; margin-right: 10px; border-radius:5px; margin-top: 13px" type="submit" id="search">검색</button>
             <!-- 확인 버튼 -->
-            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
-                border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">확인</a>
+            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color:skyblue ; color: white; padding: 10px 20px;
+                border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">기록</a>
         </form>
     </div>
 </div>

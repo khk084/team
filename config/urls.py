@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pybo import views
+from common import views as common_views
 
 
 urlpatterns = [
@@ -26,5 +27,5 @@ urlpatterns = [
     path('common/', include('common.urls')),
     path('recommend/', views.recommend_food),
     path('test/', views.test), #index test페이지
-
+    path('password_reset_confirm/<uidb64>/<token>/', common_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
 ]

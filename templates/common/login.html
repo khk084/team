@@ -4,7 +4,7 @@
 <div class="container my-3 nanum-context">
     <div class="row">
         <div class="col-4">
-            <b><h1>로그인(Log-In)</b></h1>
+            <h1><b>로그인(Log-In)</b></h1>
         </div>
 
     </div>
@@ -23,12 +23,9 @@
             <input type="password" class="form-control" name="password" id="password"
                    value="">
         </div>
-        <button type="submit" class="btn btn-primary">로그인</button>
-        <div class="col-8 text-right">
-            <span>
-                <a href="{% url 'common:signup' %}">회원가입</a>
-            </span>
-        </div>
+        <button type="submit" class="btn btn-danger">로그인</button>
+        <button type="button" class="btn btn-danger"><a href="{% url 'common:password_reset' %}" style="color:white;">비밀번호 찾기</a></button>
+        <button type="button" class="btn btn-danger"><a href="{% url 'common:signup' %}" style="color:white;">회원가입</a></button>
 
     </form>
 </div>
