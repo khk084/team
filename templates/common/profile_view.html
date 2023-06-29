@@ -24,7 +24,7 @@
         <div class="form-group">
             <p>주소 : {{ user.address|default_if_none:'' }}</p>
         </div>
-    <a href="{% url 'common:profile_update' user_id=request.user.pk %}" class="btn btn-secondary">수정하기</a>
+    <a href="{% url 'common:profile_update' user_id=request.user.pk %}" class="btn btn-danger">수정하기</a>
 </div>
 
 {% endblock %}

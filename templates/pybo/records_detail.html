@@ -40,7 +40,7 @@
                 {% endfor %}
             </div>
             <div>
-            <button type="submit" class="btn btn-primary mx-1"
+            <button type="submit" class="btn btn-danger mx-1"
                     {% if records.rating %} disabled {% endif %}>별점 등록</button>
             </div>
             {% if request.user == records.author %}
