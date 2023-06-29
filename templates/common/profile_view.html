@@ -8,12 +8,13 @@
             <div class="content_block">
                 <ul class="nav nav-tabs">
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'common:profile_view' user_id=request.user.pk %}">기본정보</a>
+                    <a class="btn btn-outline-secondary" href="{% url 'common:profile_view' user_id=request.user.pk %}">기본정보</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{% url 'common:profile_record' user_id=request.user.pk %}">내가 쓴 게시글</a>
+                    <a class="btn btn-outline-secondary" href="{% url 'common:profile_record' user_id=request.user.pk %}">내가 쓴 게시글</a>
                   </li>
                 </ul>
+                <br>
             <div class="form-group">
                 <p>성 : {{ user.first_name|default_if_none:'' }}</p>
             </div>
