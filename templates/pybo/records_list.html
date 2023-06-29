@@ -45,7 +45,7 @@
                     <td>{{ records_list.paginator.count|sub:records_list.start_index|sub:forloop.counter0|add:1 }}</td>
                     <td>{{ records.menu }}</td>
                     <td>
-                        <a href="{% url 're_detail' records.id %}" class="text-secondary">
+                        sp<a href="{% url 're_detail' records.id %}" class="text-secondary">
                             {{ records.subject }}
                         </a>
                     </td>
@@ -95,13 +95,13 @@
         {% if page_number >= records_list.number|add:-2 and page_number <= records_list.number|add:5 %}
             {% if page_number == records_list.number %}
             <li class="page-item active" aria-current="page">
-                <a class="page-link nanum-context" href="#" data-page="{{ page_number }}">
+                <a class="btn btn-info" href="#" data-page="{{ page_number }}">
                     {{ page_number }}
                 </a>
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link nanum-context" href="#" data-page="{{ page_number }}">
+                <a class="btn btn-info" href="#" data-page="{{ page_number }}">
                     {{ page_number }}
                 </a>
             </li>
@@ -126,7 +126,7 @@
     </ul>
     <!--  페이징 끝  -->
 
-    <a href="{% url 'records_create' %}" class="btn btn-secondary nanum-context">
+    <a href="{% url 'records_create' %}" class="btn btn-danger nanum-context">
         글쓰기
     </a>
 </div>
