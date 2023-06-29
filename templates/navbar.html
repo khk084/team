@@ -33,12 +33,12 @@
             Recommends
           </a>
           <div class="dropdown-menu" aria-labelledby="recommendsDd">
-            <a class="dropdown-item px-2 " href="recommend-food/?food_type= ">전   체</a>
-            <a class="dropdown-item px-2 " href="recommend-food/?food_type=한식">한   식</a>
-            <a class="dropdown-item px-2 " href="recommend-food/?food_type=중식">중   식</a>
-            <a class="dropdown-item px-2 " href="recommend-food/?food_type=일식">일   식</a>
-            <a class="dropdown-item px-2 " href="recommend-food/?food_type=양식">양   식</a>
-            <a class="dropdown-item px-2 " href="recommend-food/?food_type=디저트">디 저 트</a>
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend-food/?food_type= ">전   체</a>
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend-food/?food_type=한식">한   식</a>
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend-food/?food_type=중식">중   식</a>
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend-food/?food_type=일식">일   식</a>
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend-food/?food_type=양식">양   식</a>
+            <a class="dropdown-item px-2 " href="http://localhost:8000/recommend-food/?food_type=디저트">디 저 트</a>
           </div>
         </li>
 
@@ -65,3 +65,17 @@
     </div>
   </div>
 </nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+  // Recommends 드롭다운 메뉴 항목 클릭 시
+  $('.dropdown-menu a.dropdown-item').on('click', function(e) {
+    e.preventDefault();
+
+    // 선택한 항목의 href 값을 가져와 페이지 이동
+    var href = $(this).attr('href');
+    window.location.href = href;
+  });
+});
+</script>
