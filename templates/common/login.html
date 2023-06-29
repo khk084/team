@@ -26,6 +26,9 @@
         <button type="submit" class="btn btn-primary">로그인</button>
         <div class="col-8 text-right">
             <span>
+                <a href="{% url 'common:password_reset' %}">비밀번호 찾기</a>
+            </span>
+            <span>
                 <a href="{% url 'common:signup' %}">회원가입</a>
             </span>
         </div>
