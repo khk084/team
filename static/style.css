@@ -8,14 +8,6 @@
     font-family: 'Lobster', cursive;
     font-size: 40px;
 }
-.lilita-main{
-    font-family: 'Lilita One', cursive;
-    font-size: 100px;
-}
-.lilita-title{
-    font-family: 'Lilita One', cursive;
-    font-size: 40px;
-}
 .gowundodum{
     font-family: 'Gowun Dodum', sans-serif;
 }
@@ -27,13 +19,19 @@
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 30px;
 }
-.gowundodum-text{
+.gowundodum-context{
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 40px;
 }
-.noto{
-    font-family: 'Noto Sans KR', sans-serif;
+.nanum-title{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 30px;
 }
+.nanum-context{
+    font-family: 'Nanum Gothic', sans-serif;
+    font-size: 17px;
+}
+
 
 /* 별점 */
 
