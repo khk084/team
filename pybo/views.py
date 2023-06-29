@@ -106,7 +106,7 @@ def records_create(request):
             records.author = request.user
             records.create_date = timezone.now()
             records.food_name = request.GET.get('food_name')
-            records.menu = request.GET.get('food_menu')
+            records.menu = request.GET.get('food_type')
             records.save()
             return redirect('records')
     else:
