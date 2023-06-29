@@ -2,39 +2,41 @@
 {% block content %}
 
 <div class="container">
-    <h5 class="my-3 border-bottom pb-2 nanum-title"><b>글쓰기</b></h5>
-    <form method="post" class="post-form my-3" >
-        {% csrf_token %}
-        <div class="form-group nanum-context">
-            {% if form.food_name.value %}
-                <p>음식 분류 : {{ form.food_name.value }}</p>
-            {% else %}
-                <p>음식 분류 : {{ request.GET.food_name }}</p>
-            {% endif %}
-            {% if form.menu.value %}
-                <p>음식 메뉴 : {{ form.menu.value }}</p>
-            {% else %}
-                <p>음식 메뉴 : {{ request.GET.food_menu }}</p>
-            {% endif %}
-        </div>
-        <div class="form-group nanum-context">
-            <label for="{{ form.subject.id_for_label }}">제목</label>
-            {{ form.subject }}
-        </div>
-        <div class="form-group nanum-context">
-            <label for="{{ form.content.id_for_label }}">내용</label>
-            {{ form.content }}
-        </div>
-        <div class="form-group nanum-context">
-            <label for="{{ form.rating.id_for_label }}">별점</label>
-            <div class="star-rating">
-                {% for i in "12345" %}
-                    <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}">
-                    <label for="input-star{{ i }}"></label>
-                {% endfor %}
+    <div class="col-sm-12 p-5">
+        <h5 class="my-3 border-bottom pb-2 nanum-title"><b>글쓰기</b></h5>
+        <form method="post" class="post-form my-3" >
+            {% csrf_token %}
+            <div class="form-group nanum-context">
+                {% if form.food_name.value %}
+                    <p>음식 분류 : {{ form.food_name.value }}</p>
+                {% else %}
+                    <p>음식 분류 : {{ request.GET.food_name }}</p>
+                {% endif %}
+                {% if form.menu.value %}
+                    <p>음식 메뉴 : {{ form.menu.value }}</p>
+                {% else %}
+                    <p>음식 메뉴 : {{ request.GET.food_menu }}</p>
+                {% endif %}
             </div>
-        </div>
-        <button type="submit" class="btn btn-danger nanum-context">등록하기</button>
-    </form>
+            <div class="form-group nanum-context">
+                <label for="{{ form.subject.id_for_label }}">제목</label>
+                {{ form.subject }}
+            </div>
+            <div class="form-group nanum-context">
+                <label for="{{ form.content.id_for_label }}">내용</label>
+                {{ form.content }}
+            </div>
+            <div class="form-group nanum-context">
+                <label for="{{ form.rating.id_for_label }}">별점</label>
+                <div class="star-rating">
+                    {% for i in "12345" %}
+                        <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}">
+                        <label for="input-star{{ i }}"></label>
+                    {% endfor %}
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger nanum-context">등록하기</button>
+        </form>
+    </div>
 </div>
 {% endblock %}
