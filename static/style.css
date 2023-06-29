@@ -31,7 +31,12 @@
     font-family: 'Nanum Gothic', sans-serif;
     font-size: 17px;
 }
-
+.tilt-nav{
+    font-family: 'Tilt Warp', cursive;
+}
+.noto-sans{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* 별점 */
 
