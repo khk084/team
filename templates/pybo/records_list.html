@@ -45,7 +45,7 @@
                     <td>{{ records_list.paginator.count|sub:records_list.start_index|sub:forloop.counter0|add:1 }}</td>
                     <td>{{ records.menu }}</td>
                     <td>
-                        sp<a href="{% url 're_detail' records.id %}" class="text-secondary">
+                        <a href="{% url 're_detail' records.id %}" class="text-secondary">
                             {{ records.subject }}
                         </a>
                     </td>
