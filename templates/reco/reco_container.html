@@ -4,19 +4,19 @@
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;" >
                 <div id="food-details" class="card">
-                    <div class="card-body">
-                        <div id="map" style="width:500px;height:400px; margin:auto;"></div>
+                    <div class="card-body" style="margin:auto;">
+                        <div id="map" style="width:500px;height:400px; margin:auto; margin-top:10px; margin-bottom:20px"></div>
                         <h4> {{ food_type }} </h4>
                         <h4> {{ food_price }} </h4>
                         <span class="gowundodum-title"><b>{{ food_name }}</b></span>
                     </div>
                 </div>
-    </div>
+</div>
 
 <div style="text-align:center;">
     <div class="col-md-12">
         <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()"
-              style="display: flex; justify-content: center; align-items: center;">
+              style="display: flex; justify-content: center; align-items: center; height:15vh; ">
             <div class="form-group" style="margin-right: 10px;">
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
@@ -32,27 +32,22 @@
 
             <!-- 주소 입력 폼 -->
             <div class="form-group" style="margin-right: 10px;">
-        <label for="addressInput">주소를 입력해주세요.</label>
-        <input type="text" id="addressInput" name="address" class="form-control">
-      </div>
+                <label for="addressInput">주소를 입력해주세요.</label>
+                <input type="text" id="addressInput" name="address" class="form-control">
+            </div>
 
-    <!-- 리셋 버튼
-    <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;">다시</a> -->
+            <!-- 리셋 버튼
+            <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
+            border: none; cursor: pointer;">다시</a> -->
 
-        <!-- 검색 버튼 -->
-
-    <button style="background-color: gray; color: white; padding: 10px 20px;
-    border: none; cursor: pointer; margin-right: 10px;" type="submit" id="search">검색</button>
-    <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
-        border: none; cursor: pointer; margin-right: 10px;">확인</a>
-
-
-
+            <!-- 검색 버튼 -->
+            <button style="background-color: gray; color: white; padding: 10px 20px;
+                border: none; cursor: pointer; margin-right: 10px; border-radius:5px; margin-top: 13px" type="submit" id="search">검색</button>
+            <!-- 확인 버튼 -->
+            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
+                border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">확인</a>
         </form>
-        </div>
-
+    </div>
 </div>
 
 <!-- 자바스크립트 코드 삽입 -->
