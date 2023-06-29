@@ -30,7 +30,7 @@
                 {% for records in records_list %}
                 <tr class="text-center nanum-context">
                     <td>{{ records_list.paginator.count|sub:records_list.start_index|sub:forloop.counter0|add:1 }}</td>
-                    <td>{{ records.menu }}</td>
+                    <td>{{ records.food_name }}</td>
                     <td>
                         <a href="{% url 're_detail' records.id %}" class="text-secondary">
                             {{ records.subject }}
