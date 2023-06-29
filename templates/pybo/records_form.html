@@ -7,16 +7,16 @@
         <form method="post" class="post-form my-3" >
             {% csrf_token %}
             <div class="form-group nanum-context">
-                {% if form.food_name.value %}
-                    <p>음식 분류 : {{ form.food_name.value }}</p>
-                {% else %}
-                    <p>음식 분류 : {{ request.GET.food_name }}</p>
-                {% endif %}
-                {% if form.menu.value %}
-                    <p>음식 메뉴 : {{ form.menu.value }}</p>
-                {% else %}
-                    <p>음식 메뉴 : {{ request.GET.food_menu }}</p>
-                {% endif %}
+                {% if form.food_type.value %}
+                <p>음식 분류 : {{ form.food_type.value }}</p>
+            {% else %}
+                <p>음식 분류 : {{ request.GET.food_type }}</p>
+            {% endif %}
+            {% if form.name.value %}
+                <p>음식 메뉴 : {{ form.name.value }}</p>
+            {% else %}
+                <p>음식 메뉴 : {{ request.GET.food_name }}</p>
+            {% endif %}
             </div>
             <div class="form-group nanum-context">
                 <label for="{{ form.subject.id_for_label }}">제목</label>

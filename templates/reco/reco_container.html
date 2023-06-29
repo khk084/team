@@ -44,7 +44,7 @@
             <button style="background-color: orange; color: white; padding: 9px 20px;
                 border: none; cursor: pointer; margin-right: 10px; border-radius:5px; margin-top: 13px" type="submit" id="search">검색</button>
             <!-- 확인 버튼 -->
-            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color:skyblue ; color: white; padding: 10px 20px;
+            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_type={{ food_type }}&food_name={{ food_name }}" class="btn" style="background-color:skyblue ; color: white; padding: 10px 20px;
                 border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">기록</a>
         </form>
     </div>
