@@ -21,11 +21,11 @@
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="" {% if food_type == "" %}selected{% endif %}>All</option>
-                    <option value="디저트" {% if food_type == "디저트" %}selected{% endif %}>디저트</option>
-                    <option value="중식" {% if food_type == "중식" %}selected{% endif %}>중식</option>
-                    <option value="양식" {% if food_type == "양식" %}selected{% endif %}>양식</option>
                     <option value="한식" {% if food_type == "한식" %}selected{% endif %}>한식</option>
+                    <option value="중식" {% if food_type == "중식" %}selected{% endif %}>중식</option>
                     <option value="일식" {% if food_type == "일식" %}selected{% endif %}>일식</option>
+                    <option value="양식" {% if food_type == "양식" %}selected{% endif %}>양식</option>
+                    <option value="디저트" {% if food_type == "디저트" %}selected{% endif %}>디저트</option>
                       <!-- 추가적인 분류 옵션들 -->
                 </select>
             </div>
