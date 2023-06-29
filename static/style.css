@@ -16,6 +16,9 @@
     font-family: 'Lilita One', cursive;
     font-size: 40px;
 }
+.gowundodum{
+    font-family: 'Gowun Dodum', sans-serif;
+}
 .gowundodum-main{
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 50px;
@@ -24,7 +27,13 @@
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 30px;
 }
-
+.gowundodum-text{
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 40px;
+}
+.noto{
+    font-family: 'Noto Sans KR', sans-serif;
+}
 
 /* 별점 */
 
