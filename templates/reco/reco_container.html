@@ -1,58 +1,53 @@
-{% extends 'base2.html' %}
+
 {% block content %}
 
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;" >
                 <div id="food-details" class="card">
-                    <div class="card-body">
-                        <div id="map" style="width:500px;height:400px; margin:auto;"></div>
+                    <div class="card-body nanum-context" style="margin:auto;">
+                        <div id="map" style="width:500px;height:400px; margin:auto; margin-top:10px; margin-bottom:20px"></div>
                         <h4> {{ food_type }} </h4>
                         <h4> {{ food_price }} </h4>
-                        <h1 class="card-title">{{ food_name }}</h1>
+                        <h1><b>{{ food_name }}</b></h1>
                     </div>
                 </div>
-    </div>
+</div>
 
 <div style="text-align:center;">
-    <div class="col-md-12">
+    <div class="col-md-12 nanum-context">
         <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()"
-              style="display: flex; justify-content: center; align-items: center;">
-            <div class="form-group" style="margin-right: 10px;">
+              style="display: flex; justify-content: center; align-items: center; height:15vh; ">
+            <div class="form-group " style="margin-right: 10px;">
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
-                    <option value="" selected>All</option>
-                    <option value="디저트">디저트</option>
-                    <option value="중식">중식</option>
-                    <option value="양식">양식</option>
-                    <option value="한식">한식</option>
-                    <option value="일식">일식</option>
+                    <option value="" {% if food_type == "" %}selected{% endif %}>All</option>
+                    <option value="한식" {% if food_type == "한식" %}selected{% endif %}>한식</option>
+                    <option value="중식" {% if food_type == "중식" %}selected{% endif %}>중식</option>
+                    <option value="일식" {% if food_type == "일식" %}selected{% endif %}>일식</option>
+                    <option value="양식" {% if food_type == "양식" %}selected{% endif %}>양식</option>
+                    <option value="디저트" {% if food_type == "디저트" %}selected{% endif %}>디저트</option>
                       <!-- 추가적인 분류 옵션들 -->
                 </select>
             </div>
 
             <!-- 주소 입력 폼 -->
             <div class="form-group" style="margin-right: 10px;">
-        <label for="addressInput">주소를 입력해주세요.</label>
-        <input type="text" id="addressInput" name="address" class="form-control">
-      </div>
+                <label for="addressInput">주소를 입력해주세요.</label>
+                <input type="text" id="addressInput" name="address" class="form-control" value="{{ address }}">
+            </div>
 
-    <!-- 리셋 버튼
-    <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
-    border: none; cursor: pointer;">다시</a> -->
+            <!-- 리셋 버튼
+            <a href="{% url 'recommend_food' %}" class="btn" style="background-color: #4CAF50; color: white; padding: 10px 20px;
+            border: none; cursor: pointer;">다시</a> -->
 
-        <!-- 검색 버튼 -->
-
-    <button style="background-color: gray; color: white; padding: 10px 20px;
-    border: none; cursor: pointer; margin-right: 10px;" type="submit" id="search">검색</button>
-    <!-- 확인 버튼 -->
-    <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
-        border: none; cursor: pointer; margin-right: 10px;">확인</a>
-
-
-
+            <!-- 검색 버튼 -->
+            <button style="background-color: gray; color: white; padding: 10px 20px;
+                border: none; cursor: pointer; margin-right: 10px; border-radius:5px; margin-top: 13px" type="submit" id="search">검색</button>
+            <!-- 확인 버튼 -->
+            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
+                border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">확인</a>
         </form>
-        </div>
-
+    </div>
 </div>
 
 <!-- 자바스크립트 코드 삽입 -->
@@ -81,6 +76,12 @@ var mapContainer = document.getElementById('map'), // 지도를 표시할 div
 
 // 지도를 생성합니다
 var map = new kakao.maps.Map(mapContainer, mapOption);
+
+// 지도에 확대 축소 컨트롤을 생성한다
+var zoomControl = new kakao.maps.ZoomControl();
+
+// 지도의 우측에 확대 축소 컨트롤을 추가한다
+map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
@@ -119,7 +120,10 @@ function displayMarker(place) {
     // 마커에 클릭이벤트를 등록합니다.
     kakao.maps.event.addListener(marker, 'click', function() {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.setContent('<div style="padding:5px;font-size:12px; text-align: center;">' +
+                            '<div style="text-align: center;">' + place.place_name + '</div>' +
+                          '<a href="' + place.place_url + '" target="_blank" style="font-size:10px";>자세히 보기</a>'
+                          + '</div>');
         infowindow.open(map, marker);
     });
 }
