@@ -6,14 +6,9 @@
         <form method="post" class="post-form">
             {% csrf_token %}
             <div class="form-group">
-                <label for="id_first_name">성</label>
-                <input type="text" class="form-control" name="first_name" id="id_first_name"
-                    value="{{ user.first_name|default_if_none:'' }}">
-            </div>
-            <div class="form-group">
-                <label for="id_last_name">이름</label>
-                <input type="text" class="form-control" name="last_name" id="id_last_name"
-                    value="{{ user.last_name|default_if_none:'' }}">
+                <label for="username">아이디</label>
+                <input type="text" class="form-control" name="username" id="username"
+                    value="{{ user.username|default_if_none:'' }}">
             </div>
             <div class="form-group">
                 <label for="nickname">닉네임</label>
@@ -21,9 +16,9 @@
                     value="{{ user.nickname|default_if_none:'' }}">
             </div>
             <div class="form-group">
-                <label for="username">아이디</label>
-                <input type="text" class="form-control" name="username" id="username"
-                    value="{{ user.username|default_if_none:'' }}">
+                <label for="id_myname">이름</label>
+                <input type="text" class="form-control" name="myname" id="id_myname"
+                    value="{{ user.myname|default_if_none:'' }}">
             </div>
             <div class="form-group">
                 <label for="phone">전화번호</label>
