@@ -130,12 +130,14 @@ def records_modify(request, records_id):
             records.modify_date = timezone.now()
             records.food_name = request.POST.get('food_name')
             records.food_type = request.POST.get('food_type')
+            records.rating = request.POST.get('rating')
             records.save()
             return redirect('re_detail', records_id=records.id)
     else:
         form = RecordsForm(instance=records, initial={
             'food_type': records.food_type,
-            'food_name': records.food_name
+            'food_name': records.food_name,
+            'rating': records.rating,  # 추가
         })
     context = {'form': form}
     return render(request, 'pybo/records_form.html', context)

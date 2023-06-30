@@ -31,7 +31,8 @@
                 <label for="{{ form.rating.id_for_label }}">별점</label>
                 <div class="star-rating">
                     {% for i in "12345" %}
-                        <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}">
+                        <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}"
+                               {% if i == request.GET.rating %}checked{% endif %}>
                         <label for="input-star{{ i }}"></label>
                     {% endfor %}
                 </div>
