@@ -105,8 +105,8 @@ def records_create(request):
             records = form.save(commit=False)
             records.author = request.user
             records.create_date = timezone.now()
-            records.food_name = request.GET.get('food_name')
-            records.menu = request.GET.get('food_type')
+            records.food_name = request.POST.get('food_name')
+            records.food_type = request.POST.get('food_type')
             records.save()
             return redirect('records')
     else:
@@ -128,11 +128,13 @@ def records_modify(request, records_id):
             records = form.save(commit=False)
             records.author = request.user
             records.modify_date = timezone.now()
+            records.food_name = request.POST.get('food_name')
+            records.food_type = request.POST.get('food_type')
             records.save()
             return redirect('re_detail', records_id=records.id)
     else:
         form = RecordsForm(instance=records, initial={
-            'menu': records.menu,
+            'food_type': records.food_type,
             'food_name': records.food_name
         })
     context = {'form': form}
