@@ -10,9 +10,10 @@ class UserForm(UserCreationForm):
     phone = forms.CharField(label="전화번호")
     nickname = forms.CharField(label="닉네임")
     address = forms.CharField(label="주소")
+    myname = forms.CharField(label="이름")
     class Meta:
         model = CustomUser  # CustomUser로 수정
-        fields = ("username", "email", "phone", "nickname", "address")
+        fields = ("username", "email", "phone", "nickname", "address", "myname")
 
 class RecordsForm(forms.ModelForm):
     rating = forms.ChoiceField(choices=[(str(i), str(i)) for i in range(1, 6)], label='별점')
