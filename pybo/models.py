@@ -13,7 +13,7 @@ class Food(models.Model):
 class Records(models.Model):
     food = models.ForeignKey(Food, on_delete=models.CASCADE, null=True)
     food_name = models.CharField(max_length=100, blank=True, null=True)  # 음식 이름
-    menu = models.CharField(max_length=100, blank=True, null=True)  # 음식 타입
+    food_type = models.CharField(max_length=100, blank=True, null=True)  # 음식 타입
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=True)
     subject = models.CharField(max_length=100)
     content = models.TextField()

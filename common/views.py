@@ -130,3 +130,4 @@ class PasswordResetConfirmView(auth_views.PasswordResetConfirmView):
     """
     template_name = 'common/password_reset_confirm.html'
     success_url = reverse_lazy('common:login')
+

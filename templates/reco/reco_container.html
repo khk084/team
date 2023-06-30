@@ -3,9 +3,9 @@
 
 <!-- 추천 결과 출력 -->
 <div id="reco_result" style="text-align:center;" >
-                <div id="food-details" class="card">
-                    <div class="card-body nanum-context" style="margin:auto;">
-                        <div id="map" style="width:500px;height:400px; margin:auto; margin-top:10px; margin-bottom:20px"></div>
+                <div id="food-details">
+                    <div class="card-body gowundodum-title" style="margin:auto;">
+                        <div id="map" class="border border-warning border-style:solid 1px;" style="width:700px;height:400px; margin:auto; margin-top:10px; margin-bottom:20px"></div>
                         <h4> {{ food_type }} </h4>
                         <h4> {{ food_price }} </h4>
                         <h1><b>{{ food_name }}</b></h1>
@@ -16,8 +16,8 @@
 <div style="text-align:center;">
     <div class="col-md-12 nanum-context">
         <form method="GET" action="{% url 'recommend_food' %}" onsubmit="getAddress()"
-              style="display: flex; justify-content: center; align-items: center; height:15vh; ">
-            <div class="form-group " style="margin-right: 10px;">
+              style="display: flex; justify-content: center; align-items: center; height:15vh;">
+            <div class="form-group " style="margin-right: 10px; text-align:center;">
                 <label for="foodTypeSelect">Select Food Type:</label>
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="" {% if food_type == "" %}selected{% endif %}>All</option>
@@ -41,11 +41,11 @@
             border: none; cursor: pointer;">다시</a> -->
 
             <!-- 검색 버튼 -->
-            <button style="background-color: gray; color: white; padding: 10px 20px;
+            <button style="background-color: orange; color: white; padding: 9px 20px;
                 border: none; cursor: pointer; margin-right: 10px; border-radius:5px; margin-top: 13px" type="submit" id="search">검색</button>
             <!-- 확인 버튼 -->
-            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_menu={{ food_name }}&food_name={{ food_type }}" class="btn" style="background-color: gray; color: white; padding: 10px 20px;
-                border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">확인</a>
+            <a href="{% url 'records_create' %}?food_id={{ food.id }}&food_type={{ food_type }}&food_name={{ food_name }}" class="btn" style="background-color:skyblue ; color: white; padding: 10px 20px;
+                border: none; cursor: pointer; margin-right: 10px; margin-top: 13px">기록</a>
         </form>
     </div>
 </div>

@@ -2,46 +2,52 @@
 {% block content %}
 
 <div class="container my-3 nanum-context">
-    <h2 class="border-bottom py-2"><b>{{ records.subject }}</b></h2>
-    <div class="card my-3">
-        <div class="card-body">
-            <div class="card-text" style="white-space: pre-line;">
-                {{ records.content }}
-            </div>
-            <div class="d-flex justify-content-end">
-                <div class="badge badge-light p-2">
-                    <p>별점:
-                        {% if records.rating %}
-                            {% for i in "54321" %}
-                                {% if i|add:0 >= records.rating|add:0 %}
-                                    <span class="star-filled"></span>
-                                {% else %}
-                                    <span class="star-empty"></span>
-                                {% endif %}
-                            {% endfor %}
-                        {% else %}
-                            별점이 등록되지 않았습니다.
-                        {% endif %}
-                    </p>
-                    {{ records.modify_date|default:records.create_date|date:"Y-m-d H:i" }}
+    <div class="col-sm-12 p-5">
+        <h2 class="border-bottom py-2" style="display: flex; justify-content: space-between;">
+          <b style="text-align: left;">{{ records.subject }}</b>
+          <b style="text-align: right;">{{ records.food_type }} - {{ records.food_name }}</b>
+        </h2>
+        <div class="card my-3">
+            <div class="card-body">
+                <div class="card-text" style="white-space: pre-line;">
+                    <p>   </p>
+                    {{ records.content }}
+                </div>
+                <div class="d-flex justify-content-end">
+                    <div class="badge badge-light p-2">
+                        <p>별점:
+                            {% if records.rating %}
+                                {% for i in "54321" %}
+                                    {% if i|add:0 >= records.rating|add:0 %}
+                                        <span class="star-filled"></span>
+                                    {% else %}
+                                        <span class="star-empty"></span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                별점이 등록되지 않았습니다.
+                            {% endif %}
+                        </p>
+                        {{ records.modify_date|default:records.create_date|date:"Y-m-d H:i" }}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="text-center">
+        <div class="text-center">
 
-        <form method="post" action="{% url 'submit_rating' records_id=records.id %}">
-            {% csrf_token %}
+            <form method="post" action="{% url 'submit_rating' records_id=records.id %}">
+                {% csrf_token %}
 
-            {% if request.user == records.author %}
-            <div class="my-3">
-                <a href="{% url 'records_modify' records.id %}"
-                   class="btn btn-sm btn-outline-secondary">수정</a>
-                <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                   data-url="{% url 'records_delete' records.id %}">삭제</a>
-            </div>
-            {% endif %}
-        </form>
+                {% if request.user == records.author %}
+                <div class="my-3">
+                    <a href="{% url 'records_modify' records.id %}?food_name={{ records.food_name }}&food_type={{ records.food_type }}&rating={{ records.rating }}"
+                       class="btn btn-sm btn-outline-success">수정</a>
+                    <a href="#" class="delete btn btn-sm btn-outline-success"
+                       data-url="{% url 'records_delete' records.id %}">삭제</a>
+                </div>
+                {% endif %}
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}

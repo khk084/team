@@ -2,39 +2,58 @@
 {% block content %}
 
 <div class="container">
-    <h5 class="my-3 border-bottom pb-2 nanum-title"><b>글쓰기</b></h5>
-    <form method="post" class="post-form my-3" >
-        {% csrf_token %}
-        <div class="form-group nanum-context">
-            {% if form.food_name.value %}
-                <p>음식 분류 : {{ form.food_name.value }}</p>
-            {% else %}
-                <p>음식 분류 : {{ request.GET.food_name }}</p>
-            {% endif %}
-            {% if form.menu.value %}
-                <p>음식 메뉴 : {{ form.menu.value }}</p>
-            {% else %}
-                <p>음식 메뉴 : {{ request.GET.food_menu }}</p>
-            {% endif %}
-        </div>
-        <div class="form-group nanum-context">
-            <label for="{{ form.subject.id_for_label }}">제목</label>
-            {{ form.subject }}
-        </div>
-        <div class="form-group nanum-context">
-            <label for="{{ form.content.id_for_label }}">내용</label>
-            {{ form.content }}
-        </div>
-        <div class="form-group nanum-context">
-            <label for="{{ form.rating.id_for_label }}">별점</label>
-            <div class="star-rating">
-                {% for i in "12345" %}
-                    <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}">
-                    <label for="input-star{{ i }}"></label>
-                {% endfor %}
+    <div class="col-sm-12 p-5">
+        <h5 class="my-3 border-bottom pb-2 nanum-title"><b>글쓰기</b></h5>
+        <form method="post" class="post-form my-3">
+            {% csrf_token %}
+            <div class="form-group row nanum-context align-items-center">
+                <label for="foodTypeSelect" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 분류 :</label>
+                <div class="col-sm-2">
+                <select id="foodTypeSelect" name="food_type" class="form-control so">
+                    <option value="한식" {% if request.GET.food_type == "한식" %}selected{% endif %}>한식</option>
+                    <option value="중식" {% if request.GET.food_type == "중식" %}selected{% endif %}>중식</option>
+                    <option value="일식" {% if request.GET.food_type == "일식" %}selected{% endif %}>일식</option>
+                    <option value="양식" {% if request.GET.food_type == "양식" %}selected{% endif %}>양식</option>
+                    <option value="디저트" {% if request.GET.food_type == "디저트" %}selected{% endif %}>디저트</option>
+                    <option value="" {% if request.GET.food_type == "" %}selected{% endif %}>기타</option>
+                      <!-- 추가적인 분류 옵션들 -->
+                </select>
+                </div>
             </div>
-        </div>
-        <button type="submit" class="btn btn-danger nanum-context">등록하기</button>
-    </form>
+            <div class="form-group row nanum-context align-items-center">
+                <label for="food_nameInput" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 메뉴 :</label>
+                <div class="col-sm-2">
+                    <input type="text" id="food_nameInput" name="food_name" class="form-control" value="{{ request.GET.food_name }}" style="width:100%;">
+                </div>
+            </div>
+
+            <div class="form-group row nanum-context">
+                <label for="{{ form.subject.id_for_label }}" class="col-sm-1.5 col-form-label" style="margin-left:15px;">제 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;목 :</label>
+                <div class="col-sm-10">
+                {{ form.subject }}
+                </div>
+            </div>
+            <div class="form-group nanum-context">
+                <label for="{{ form.content.id_for_label }}">내용</label>
+                {{ form.content }}
+            </div>
+            <div class="form-group nanum-context">
+                <div class="text-center">
+                <label for="{{ form.rating.id_for_label }}">별점</label>
+
+                <div class="star-rating">
+                    {% for i in "12345" %}
+                        <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}"
+                               {% if i == request.GET.rating %}checked{% endif %}>
+                        <label for="input-star{{ i }}"></label>
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+            <div class="text-center">
+            <button type="submit" class="btn btn-danger nanum-context">등록하기</button>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load food_filter %}
+{% block content %}
+<div class="container my-3 nanum-context">
+  <div class="p-3 mb-2 bg-body text-dark"></div><h1 class="text-center mb-4"><b>회원정보</b></h1>
+  <div class="row">
+    <div class="col-sm-12 p-5">
+      <div class="content_block">
+        <div class="d-flex justify-content-center">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="btn btn-outline-secondary" href="{% url 'common:profile_view' user_id=request.user.pk %}">기본정보</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-outline-secondary" href="{% url 'common:profile_record' user_id=request.user.pk %}">내가 쓴 게시글</a>
+          </li>
+        </ul>
+        </div>
+        <table class="table">
+        <thead>
+            <tr class="text-center thead-dark nanum-context">
+                <th>번호</th>
+                <th>메뉴</th>
+                <th style="width:30%">제목</th>
+                <th>별점</th>
+                <th>작성일시</th>
+                <th>조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if records_list %}
+                {% for records in records_list %}
+                <tr class="text-center nanum-context">
+                    <td>{{ records_list.paginator.count|sub:records_list.start_index|sub:forloop.counter0|add:1 }}</td>
+                    <td>{{ records.food_name }}</td>
+                    <td>
+                        <a href="{% url 're_detail' records.id %}" class="text-secondary">
+                            {{ records.subject }}
+                        </a>
+                    </td>
+                    <td>
+                        <div class="star-rating">
+                            {% for i in "12345" %}
+                                {% if i|add:0 >= records.rating|add:0 %}
+                                    <span class="star-filled"></span>
+                                {% else %}
+                                    <span class="star-empty"></span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </td>
+
+                    <td>{{ records.modify_date|default:records.create_date|date:"Y-m-d H:i" }}</td>
+                    <td>{{ records.views }}</td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr class="nanum-context">
+                    <td colspan="4">기록이 없습니다</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
