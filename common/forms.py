@@ -24,6 +24,7 @@ class RecordsForm(forms.ModelForm):
             'content': forms.Textarea(attrs={'class':'form-control', 'rows': 10}),
         }
 
+
 class UserProfileForm(UserChangeForm):
     first_name = forms.CharField(label="성")
     last_name = forms.CharField(label="이름")
