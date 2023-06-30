@@ -7,9 +7,17 @@
         <form method="post" class="post-form my-3">
             {% csrf_token %}
             <div class="form-group row nanum-context align-items-center">
-                <label for="food_typeInput" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 분류 :</label>
+                <label for="foodTypeSelect" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 분류 :</label>
                 <div class="col-sm-10">
-                    <input type="text" id="food_typeInput" name="food_type" class="form-control" value="{{ request.GET.food_type }}" style="width:100%;">
+                <select id="foodTypeSelect" name="food_type" class="form-control so">
+                    <option value="한식" {% if request.GET.food_type == "한식" %}selected{% endif %}>한식</option>
+                    <option value="중식" {% if request.GET.food_type == "중식" %}selected{% endif %}>중식</option>
+                    <option value="일식" {% if request.GET.food_type == "일식" %}selected{% endif %}>일식</option>
+                    <option value="양식" {% if request.GET.food_type == "양식" %}selected{% endif %}>양식</option>
+                    <option value="디저트" {% if request.GET.food_type == "디저트" %}selected{% endif %}>디저트</option>
+                    <option value="" {% if request.GET.food_type == "" %}selected{% endif %}>기타</option>
+                      <!-- 추가적인 분류 옵션들 -->
+                </select>
                 </div>
             </div>
             <div class="form-group row nanum-context align-items-center">
@@ -28,7 +36,9 @@
                 {{ form.content }}
             </div>
             <div class="form-group nanum-context">
+                <div class="text-center">
                 <label for="{{ form.rating.id_for_label }}">별점</label>
+
                 <div class="star-rating">
                     {% for i in "12345" %}
                         <input type="radio" name="{{ form.rating.html_name }}" id="input-star{{ i }}" value="{{ i }}"
@@ -36,8 +46,11 @@
                         <label for="input-star{{ i }}"></label>
                     {% endfor %}
                 </div>
+                </div>
             </div>
+            <div class="text-center">
             <button type="submit" class="btn btn-danger nanum-context">등록하기</button>
+            </div>
         </form>
     </div>
 </div>
