@@ -2,10 +2,11 @@
 {% load food_filter %}
 {% block content %}
 <div class="container my-3 nanum-context">
-    <h2 class="text-center mb-4"><b>회원정보</b></h2>
+  <div class="p-3 mb-2 bg-body text-dark"></div><h1 class="text-center mb-4"><b>회원정보</b></h1>
   <div class="row">
     <div class="col-sm-12 p-5">
       <div class="content_block">
+        <div class="d-flex justify-content-center">
         <ul class="nav nav-tabs">
           <li class="nav-item">
             <a class="btn btn-outline-secondary" href="{% url 'common:profile_view' user_id=request.user.pk %}">기본정보</a>
@@ -14,6 +15,7 @@
             <a class="btn btn-outline-secondary" href="{% url 'common:profile_record' user_id=request.user.pk %}">내가 쓴 게시글</a>
           </li>
         </ul>
+        </div>
         <table class="table">
         <thead>
             <tr class="text-center thead-dark nanum-context">
