@@ -4,22 +4,23 @@
 <div class="container">
     <div class="col-sm-12 p-5">
         <h5 class="my-3 border-bottom pb-2 nanum-title"><b>글쓰기</b></h5>
-        <form method="post" class="post-form my-3" >
+        <form method="post" class="post-form my-3">
             {% csrf_token %}
-            <div class="form-group nanum-context">
-                {% if form.food_type.value %}
-                <p>음식 분류 : {{ form.food_type.value }}</p>
-            {% else %}
-                <p>음식 분류 : {{ request.GET.food_type }}</p>
-            {% endif %}
-            {% if form.name.value %}
-                <p>음식 메뉴 : {{ form.name.value }}</p>
-            {% else %}
-                <p>음식 메뉴 : {{ request.GET.food_name }}</p>
-            {% endif %}
+            <div class="form-group row nanum-context align-items-center">
+                <label for="food_typeInput" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 분류 :</label>
+                <div class="col-sm-10">
+                    <input type="text" id="food_typeInput" name="food_type" class="form-control" value="{{ request.GET.food_type }}" style="width:100%;">
+                </div>
             </div>
+            <div class="form-group row nanum-context align-items-center">
+                <label for="food_nameInput" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 메뉴 :</label>
+                <div class="col-sm-10">
+                    <input type="text" id="food_nameInput" name="food_name" class="form-control" value="{{ request.GET.food_name }}" style="width:100%;">
+                </div>
+            </div>
+
             <div class="form-group nanum-context">
-                <label for="{{ form.subject.id_for_label }}">제목</label>
+                <label for="{{ form.subject.id_for_label }}">제목 :</label>
                 {{ form.subject }}
             </div>
             <div class="form-group nanum-context">
