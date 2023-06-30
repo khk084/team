@@ -3,10 +3,14 @@
 
 <div class="container my-3 nanum-context">
     <div class="col-sm-12 p-5">
-        <h2 class="border-bottom py-2"><b>{{ records.subject }}</b></h2>
+        <h2 class="border-bottom py-2" style="display: flex; justify-content: space-between;">
+          <b style="text-align: left;">{{ records.subject }}</b>
+          <b style="text-align: right;">{{ records.food_type }} - {{ records.food_name }}</b>
+        </h2>
         <div class="card my-3">
             <div class="card-body">
                 <div class="card-text" style="white-space: pre-line;">
+                    <p>   </p>
                     {{ records.content }}
                 </div>
                 <div class="d-flex justify-content-end">
