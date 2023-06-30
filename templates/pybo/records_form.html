@@ -8,7 +8,7 @@
             {% csrf_token %}
             <div class="form-group row nanum-context align-items-center">
                 <label for="foodTypeSelect" class="col-sm-1.5 col-form-label" style="margin-left:15px;">음식 분류 :</label>
-                <div class="col-sm-10">
+                <div class="col-sm-2">
                 <select id="foodTypeSelect" name="food_type" class="form-control so">
                     <option value="한식" {% if request.GET.food_type == "한식" %}selected{% endif %}>한식</option>
                     <option value="중식" {% if request.GET.food_type == "중식" %}selected{% endif %}>중식</option>
@@ -27,9 +27,11 @@
                 </div>
             </div>
 
-            <div class="form-group nanum-context">
-                <label for="{{ form.subject.id_for_label }}">제목 :</label>
+            <div class="form-group row nanum-context">
+                <label for="{{ form.subject.id_for_label }}" class="col-sm-1.5 col-form-label" style="margin-left:15px;">제목 :</label>
+                <div class="col-sm-11">
                 {{ form.subject }}
+                </div>
             </div>
             <div class="form-group nanum-context">
                 <label for="{{ form.content.id_for_label }}">내용</label>
