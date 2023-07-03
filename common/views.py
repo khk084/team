@@ -100,7 +100,7 @@ def change_password(request):
             messages.success(request, '패스워드가 변경되었습니다!')
             return redirect('common:profile_view', user_id=request.user.id)
         else:
-            messages.error(request, 'Please correct the error below.')
+            messages.error(request, '패스워드 입력 오류를 확인해 주세요!')
     else:
         form = CustomPasswordChangeForm(request.user)
     return render(request, 'common/change_password.html', {

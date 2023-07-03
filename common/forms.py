@@ -27,15 +27,14 @@ class RecordsForm(forms.ModelForm):
 
 
 class UserProfileForm(UserChangeForm):
-    first_name = forms.CharField(label="성")
-    last_name = forms.CharField(label="이름")
+    myname = forms.CharField(label="이름")
     email = forms.EmailField(label="이메일")
     phone = forms.CharField(label="전화번호")
     nickname = forms.CharField(label="닉네임")
     address = forms.CharField(label="주소")
     class Meta:
         model = CustomUser
-        fields = ['first_name', 'last_name', 'nickname', 'username', 'phone', 'email', 'address']
+        fields = ['myname', 'nickname', 'username', 'phone', 'email', 'address']
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
