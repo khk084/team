@@ -3,8 +3,8 @@
 {% block content %}
 
 <div class="container my-3">
-    <div class="row justify-content-between my-3 col-sm-12 p-5">
-        <div class="col-2 nanum-context">
+    <div class="row justify-content-between my-3 col-sm-12 pl-4 pr-0 pt-5 pb-4">
+        <div class="col-2 nanum-context text-left">
             <select class="form-control so" id="sortOption">
                 <option value="recent" {% if so == 'recent' %}selected{% endif %}>
                     최신순
@@ -17,7 +17,9 @@
                 </option>
             </select>
         </div>
-        <div class="col-4 input-group nanum-context">
+        <div class="col-6"></div>
+
+        <div class="col-4 input-group nanum-context d-flex justify-content-between">
             <input type="text" class="form-control kw"
                    value="{{ kw|default_if_none:'' }}">
             <div class="input-group-append">
@@ -60,7 +62,7 @@
                             {% endfor %}
                         </div>
                     </td>
-                    <td>{{ records.author.myname }}</td>
+                    <td>{{ records.author.nickname }}</td>
                     <td>{{ records.modify_date|default:records.create_date|date:"Y-m-d H:i" }}</td>
                     <td>{{ records.views }}</td>
                 </tr>
@@ -125,10 +127,11 @@
         {% endif %}
     </ul>
     <!--  페이징 끝  -->
-
+    <div class="pl-4">
     <a href="{% url 'records_create' %}" class="btn btn-danger nanum-context">
         글쓰기
     </a>
+        </div>
 </div>
 <form id="searchForm" method="get" action="{% url 'records' %}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
