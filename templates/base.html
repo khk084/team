@@ -56,6 +56,15 @@
 
 <!-- Bootstrap JS -->
 
+<!-- 페이지 상단에 메세지 팝업 후 설정된 시간에 사라짐 -->
+<script>
+    window.setTimeout(function() {
+        $(".alert-auto-dismissible").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 2000); // 시간 설정, 2000 -> 2초
+</script>
+
 {% block script %}
 {% endblock %}
 </body>
