@@ -14,6 +14,8 @@
                     <option value="중식" {% if request.GET.food_type == "중식" %}selected{% endif %}>중식</option>
                     <option value="일식" {% if request.GET.food_type == "일식" %}selected{% endif %}>일식</option>
                     <option value="양식" {% if request.GET.food_type == "양식" %}selected{% endif %}>양식</option>
+                    <option value="분식" {% if request.GET.food_type == "분식" %}selected{% endif %}>분식</option>
+                    <option value="패스트푸드" {% if request.GET.food_type == "패스트푸드" %}selected{% endif %}>패스트푸드</option>
                     <option value="디저트" {% if request.GET.food_type == "디저트" %}selected{% endif %}>디저트</option>
                     <option value="" {% if request.GET.food_type == "" %}selected{% endif %}>기타</option>
                       <!-- 추가적인 분류 옵션들 -->
