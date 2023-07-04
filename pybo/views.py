@@ -69,8 +69,8 @@ def records(request):
         records_list = records_list.filter(
             Q(subject__icontains=kw) |
             Q(content__icontains=kw) |
-            Q(menu__icontains=kw) |
-            Q(author__username__icontains=kw)
+            Q(food_name__icontains=kw) |
+            Q(author__nickname__icontains=kw)
         ).distinct()
     paginator = Paginator(records_list, 5) # 페이지당 숫자만큼 게시물 보여줌
     page_obj = paginator.get_page(page)

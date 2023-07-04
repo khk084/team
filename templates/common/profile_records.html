@@ -61,9 +61,78 @@
             {% endif %}
         </tbody>
     </table>
+    <!--  페이징 처리  -->
+    <ul class="pagination justify-content-center nanum-context pt-5">
+        <!--    이전 페이지    -->
+        {% if records_list.has_previous %}
+        <li class="page-item">
+            <a class="page-link"
+               href="#" data-page="{{ records_list.previous_page_number }}">
+                이전
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                이전
+            </a>
+        </li>
+        {% endif %}
+        <!--    페이지 리스트    -->
+        {% for page_number in records_list.paginator.page_range %}
+        {% if page_number >= records_list.number|add:-2 and page_number <= records_list.number|add:5 %}
+            {% if page_number == records_list.number %}
+            <li class="page-item active" aria-current="page">
+                <a class="page-link" href="#" data-page="{{ page_number }}">
+                    {{ page_number }}
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item">
+                <a class="page-link" href="#" data-page="{{ page_number }}">
+                    {{ page_number }}
+                </a>
+            </li>
+            {% endif %}
+        {% endif %}
+        {% endfor %}
+        <!--    다음 페이지    -->
+        {% if records_list.has_next %}
+        <li class="page-item">
+            <a class="page-link"
+               href="#" data-page="{{ records_list.next_page_number }}">
+                다음
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">
+                다음
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+    <!--  페이징 끝  -->
       </div>
     </div>
   </div>
 
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const pageLinks = document.querySelectorAll('.pagination .page-link');
+
+        pageLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const page = this.dataset.page;
+                const url = "{% url 'common:profile_record' user_id=user.pk %}?page=" + page;
+                window.location.href = url;
+            });
+        });
+    });
+</script>
 {% endblock %}
