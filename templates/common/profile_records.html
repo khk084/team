@@ -63,6 +63,16 @@
     </table>
     <!--  페이징 처리  -->
     <ul class="pagination justify-content-center nanum-context pt-5">
+        <!-- 처음으로 가는 버튼 -->
+        {% if records_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link first-page-link" href="#" data-page="1">처음</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">처음</a>
+            </li>
+        {% endif %}
         <!--    이전 페이지    -->
         {% if records_list.has_previous %}
         <li class="page-item">
@@ -111,6 +121,16 @@
             </a>
         </li>
         {% endif %}
+        <!-- 끝으로 가는 버튼 -->
+        {% if records_list.has_next %}
+            <li class="page-item">
+                <a class="page-link last-page-link" href="#" data-last-page="{{ records_list.paginator.num_pages }}">마지막</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">마지막</a>
+            </li>
+        {% endif %}
     </ul>
     <!--  페이징 끝  -->
       </div>
@@ -124,6 +144,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const pageLinks = document.querySelectorAll('.pagination .page-link');
+        const firstPageLink = document.querySelector('.first-page-link');
+        const lastPageLink = document.querySelector('.last-page-link');
 
         pageLinks.forEach(function (link) {
             link.addEventListener('click', function (e) {
@@ -133,6 +155,24 @@
                 window.location.href = url;
             });
         });
+
+        if (firstPageLink) {
+            firstPageLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                const firstPage = 1;
+                const url = "{% url 'common:profile_record' user_id=user.pk %}?page=" + firstPage;
+                window.location.href = url;
+            });
+        }
+
+        if (lastPageLink) {
+            lastPageLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                const lastPage = this.dataset.lastPage;
+                const url = "{% url 'common:profile_record' user_id=user.pk %}?page=" + lastPage;
+                window.location.href = url;
+            });
+        }
     });
 </script>
 {% endblock %}
