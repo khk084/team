@@ -77,6 +77,16 @@
 
     <!--  페이징 처리  -->
     <ul class="pagination justify-content-center nanum-context pt-5">
+        <!-- 처음으로 가는 버튼 -->
+        {% if records_list.has_previous %}
+            <li class="page-item">
+                <a class="page-link first-page-link" href="#" data-page="1">처음</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">처음</a>
+            </li>
+        {% endif %}
         <!--    이전 페이지    -->
         {% if records_list.has_previous %}
         <li class="page-item">
@@ -125,6 +135,16 @@
             </a>
         </li>
         {% endif %}
+        <!-- 끝으로 가는 버튼 -->
+        {% if records_list.has_next %}
+            <li class="page-item">
+                <a class="page-link last-page-link" href="#" data-last-page="{{ records_list.paginator.num_pages }}">마지막</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" tabindex="-1" aria-disabled="true" href="#">마지막</a>
+            </li>
+        {% endif %}
     </ul>
     <!--  페이징 끝  -->
     <div class="pl-4">
@@ -162,6 +182,23 @@
             var selectedOption = $("#sortOption").val();
             localStorage.setItem('sortOption', selectedOption);
             $("#page").val($(this).data("page"));
+            $("#so").val(selectedOption);
+            $("#searchForm").submit();
+        });
+
+        $(".first-page-link").on('click', function() {
+            var selectedOption = $("#sortOption").val();
+            localStorage.setItem('sortOption', selectedOption);
+            $("#page").val(1);
+            $("#so").val(selectedOption);
+            $("#searchForm").submit();
+        });
+
+        $(".last-page-link").on('click', function() {
+            var selectedOption = $("#sortOption").val();
+            var lastPage = $(this).data("lastPage");
+            localStorage.setItem('sortOption', selectedOption);
+            $("#page").val(lastPage);
             $("#so").val(selectedOption);
             $("#searchForm").submit();
         });
